@@ -4,6 +4,7 @@ import { getSupabaseBrowserClient } from "@/lib/supabase/browser-client";
 import { User } from "@supabase/supabase-js";
 import { useState, useEffect } from "react";
 import { AuthDemoPage } from "../components/AuthDemoPage";
+import Image from "next/image";
 
 type GithubLoginDemoProps = {
   user: User | null;
@@ -42,7 +43,7 @@ export default function GithubLoginDemo({ user }: GithubLoginDemoProps) {
 
   return (
     <AuthDemoPage
-      title="Email + Password"
+      title="Github"
       intro="Classic credentials—users enter details, Supabase secures the rest while getSession + onAuthStateChange keep the UI live."
       steps={[
         "Toggle between sign up and sign in.",
@@ -68,7 +69,13 @@ export default function GithubLoginDemo({ user }: GithubLoginDemoProps) {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#0d1f3f] text-2xl font-semibold text-white shadow-lg shadow-blue-900/40 ring-2 ring-[#8ab4ff]/40">
-                  G
+                  <Image
+                    src="/github-icon.svg"
+                    alt="Github logo"
+                    width={100}
+                    height={30}
+                    className="h-6 w-auto  invert"
+                  />
                 </span>
                 <div>
                   <p className="text-xs uppercase tracking-[0.2em] text-slate-400">
@@ -77,6 +84,7 @@ export default function GithubLoginDemo({ user }: GithubLoginDemoProps) {
                   <h3 className="text-xl font-semibold text-white">
                     Continue with Github
                   </h3>
+
                 </div>
               </div>
               <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-[#fbbc05] shadow-sm">
@@ -92,6 +100,13 @@ export default function GithubLoginDemo({ user }: GithubLoginDemoProps) {
               className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#1a73e8] px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-blue-900/40 transition hover:bg-[#1662c4]"
             >
               Continue with Github
+              <Image
+                src="/github-icon.svg"
+                alt="Github logo"
+                width={100}
+                height={30}
+                className="h-6 w-auto  invert"
+              />
             </button>
           </section>
         </>
