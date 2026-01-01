@@ -4,6 +4,7 @@ import { getSupabaseBrowserClient } from "@/lib/supabase/browser-client";
 import { useEffect, useState } from "react";
 import { User } from "@supabase/supabase-js";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function AuthPage({ user }: { user: User | null }) {
   const supabase = getSupabaseBrowserClient();
@@ -17,11 +18,17 @@ export default function AuthPage({ user }: { user: User | null }) {
 
   // Keep session reactive
   useEffect(() => {
+    async function loadSession() {
+      const {data} = await supabase.auth.getSession();
+      setCurrentUser(data.session?.user ?? null);
+    }
+    loadSession();
+
     const { data: listener } = supabase.auth.onAuthStateChange(
-      (_event, session) => setCurrentUser(session?.user ?? null)
+      (_event, session) => { setCurrentUser(session?.user ?? null) }
     );
     return () => listener.subscription.unsubscribe();
-  }, []);
+  }, [supabase]);
 
   // Email/Password Handler
   async function handleEmailAuth(e: React.FormEvent<HTMLFormElement>) {
@@ -40,7 +47,7 @@ export default function AuthPage({ user }: { user: User | null }) {
         password,
       });
       setStatus(error ? error.message : "Signed in successfully");
-      if (!error) router.push("/");
+      // if (!error) router.push("/");
     }
   }
 
@@ -48,7 +55,10 @@ export default function AuthPage({ user }: { user: User | null }) {
   async function handleGithubLogin() {
     await supabase.auth.signInWithOAuth({
       provider: "github",
-      options: { redirectTo: window.location.origin },
+      options: {
+        redirectTo: `${window.location.origin}/auth`,
+        skipBrowserRedirect: false,
+      },
     });
   }
 
@@ -77,8 +87,8 @@ export default function AuthPage({ user }: { user: User | null }) {
                 type="button"
                 onClick={() => setMode(m as "signup" | "signin")}
                 className={`px-4 py-1 rounded-full text-sm font-semibold ${mode === m
-                    ? "bg-emerald-500/40 text-white"
-                    : "bg-white/10 text-slate-300"
+                  ? "bg-emerald-500/40 text-white"
+                  : "bg-white/10 text-slate-300"
                   }`}
               >
                 {m === "signup" ? "Sign Up" : "Sign In"}
@@ -117,9 +127,16 @@ export default function AuthPage({ user }: { user: User | null }) {
       {!currentUser && (
         <button
           onClick={handleGithubLogin}
-          className="w-full rounded-full bg-[#1a73e8] py-3 font-semibold shadow-lg"
+          className="flex items-center justify-center gap-2 w-full rounded-full bg-[#1a73e8] py-3 font-semibold shadow-lg"
         >
           Continue with GitHub
+          <Image
+            src="/github-icon.svg"
+            alt="Github logo"
+            width={100}
+            height={30}
+            className="h-6 w-auto  invert"
+          />
         </button>
       )}
 
