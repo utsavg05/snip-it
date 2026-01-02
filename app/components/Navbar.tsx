@@ -62,7 +62,7 @@ export default async function Navbar() {
           <Link href="#features" className="hover:text-white">
             Features
           </Link>
-          <Link href="#pricing" className="hover:text-white">
+          <Link href="/pricing" className="hover:text-white">
             Pricing
           </Link>
           <Link href="#examples" className="hover:text-white">
