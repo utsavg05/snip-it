@@ -50,17 +50,17 @@ export default function Testimonials() {
                     ))}
                 </div>
             </div>
-                <div className="mx-auto max-w-6xl px-6 pb-10 text-center">
-                    <Link href="https://x.com/0xdevug" target="_blank" rel="noopener noreferrer">
-            <Button
-                size="lg"
-                variant="outline"
-                className="text-center cursor-pointer rounded-none border-white/15 px-8 py-6 text-base text-black bg-white hover:bg-white/80"
-                >
-                Follow us on X (formerly Twitter)
-            </Button>
-            </Link>
-                </div>
+            <div className="mx-auto max-w-6xl px-6 pb-10 text-center">
+                <Link href="https://x.com/0xdevug" target="_blank" rel="noopener noreferrer">
+                    <Button
+                        size="lg"
+                        variant="outline"
+                        className="text-center cursor-pointer rounded-none border-white/15 px-8 py-6 text-base text-black bg-white hover:bg-white/80"
+                    >
+                        Follow us on X (formerly Twitter)
+                    </Button>
+                </Link>
+            </div>
         </section>
     );
 }
