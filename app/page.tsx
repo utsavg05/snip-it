@@ -1,14 +1,16 @@
-import { supabase } from "@/lib/initSupabase";
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import SocialProof from "./components/SocialProof";
+import HowItWorks from "./components/HowItWorks";
 
-export default async function Home() {
 
-  const { data, error } = await supabase.from("table").select("*")
-  console.log("DATA:", data);
-  console.log("ERROR: ", error);
-
+export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <h1>Snip It</h1>
-    </div>
+    <>
+    <Navbar />
+    <Hero />
+    {/* <SocialProof /> */}
+    <HowItWorks />
+    </>
   );
 }
