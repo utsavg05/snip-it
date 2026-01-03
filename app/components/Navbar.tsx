@@ -40,6 +40,7 @@ import { createSupabaseServerClient } from "@/lib/supabase/server-client";
 import Image from "next/image";
 import Link from "next/link";
 import UserMenu from "./UserMenu";
+import { CoolMode } from "@/components/ui/cool-mode";
 
 export default async function Navbar() {
   const supabase = await createSupabaseServerClient();
@@ -102,12 +103,14 @@ export default async function Navbar() {
         {user ? (
           <UserMenu user={user} />
         ) : (
+          <CoolMode>
           <Link
             href="/auth"
             className="bg-emerald-500 px-5 py-2 text-sm font-semibold text-black hover:bg-emerald-400"
           >
             Login
           </Link>
+          </CoolMode>
         )}
       </div>
     </nav>

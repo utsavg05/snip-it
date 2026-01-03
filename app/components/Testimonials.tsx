@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { CoolMode } from "@/components/ui/cool-mode";
 import Link from "next/link";
 
 const testimonials = [
@@ -51,6 +52,7 @@ export default function Testimonials() {
                 </div>
             </div>
             <div className="mx-auto max-w-6xl px-6 pb-10 text-center">
+                <CoolMode>
                 <Link href="https://x.com/0xdevug" target="_blank" rel="noopener noreferrer">
                     <Button
                         size="lg"
@@ -60,6 +62,7 @@ export default function Testimonials() {
                         Follow us on X (formerly Twitter)
                     </Button>
                 </Link>
+                </CoolMode>
             </div>
         </section>
     );
