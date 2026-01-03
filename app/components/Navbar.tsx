@@ -39,6 +39,7 @@
 import { createSupabaseServerClient } from "@/lib/supabase/server-client";
 import Image from "next/image";
 import Link from "next/link";
+import UserMenu from "./UserMenu";
 
 export default async function Navbar() {
   const supabase = await createSupabaseServerClient();
@@ -71,7 +72,7 @@ export default async function Navbar() {
         </div>
 
         {/* Right side */}
-        {user ? (
+        {/* {user ? (
           <Link href="/auth" className="group relative">
             {user.user_metadata?.avatar_url ? (
               <Image
@@ -82,13 +83,28 @@ export default async function Navbar() {
                 className="rounded-full border border-white/10 transition group-hover:ring-2 group-hover:ring-emerald-400/40"
               />
             ) : (
-              <span className="text-sm text-slate-300">{user.email}</span>
+              // <span className="text-sm text-slate-300">{user.email}</span>
+              <div className="flex h-9 w-9 items-center justify-center rounded-full bg-emerald-500/20 text-sm font-semibold text-emerald-400">
+                {user.email?.[0]?.toUpperCase()}
+              </div>
+
             )}
           </Link>
         ) : (
           <Link
             href="/auth"
             className="rounded-none bg-emerald-500 px-5 py-2 text-sm font-semibold text-black transition hover:bg-emerald-400"
+          >
+            Login
+          </Link>
+        )} */}
+
+        {user ? (
+          <UserMenu user={user} />
+        ) : (
+          <Link
+            href="/auth"
+            className="bg-emerald-500 px-5 py-2 text-sm font-semibold text-black hover:bg-emerald-400"
           >
             Login
           </Link>
