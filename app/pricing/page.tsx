@@ -1,6 +1,12 @@
 import { Button } from "@/components/ui/button";
+import { createSupabaseServerClient } from "@/lib/supabase/server-client";
+import Link from "next/link";
 
-export default function Pricing() {
+export default async function Pricing() {
+
+  const supabase = await createSupabaseServerClient();
+  const {data: {user}} = await supabase.auth.getUser();
+
   return (
     <section
       id="pricing"
@@ -43,9 +49,20 @@ export default function Pricing() {
               <li><span className="text-emerald-400">✓</span> Community support</li>
             </ul>
 
-            <Button className="mt-8 w-full rounded-full bg-white/10 text-white hover:bg-white/20">
+          {
+            user ? (
+              <Button disabled className="mt-8 w-full rounded-full bg-white/10 text-white hover:bg-white/20">
+              Your Current Plan
+            </Button>
+            ) : (
+              <Link href="/auth">
+              <Button className="mt-8 w-full rounded-full bg-white/10 text-white hover:bg-white/20">
               Get started for free
             </Button>
+            </Link>
+            )
+          }
+            
           </div>
 
           {/* Pro Plan */}

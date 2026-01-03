@@ -1,5 +1,5 @@
 // drizzle/schema.ts
-import { pgTable, text, varchar, timestamp, jsonb, primaryKey } from "drizzle-orm/pg-core";
+import { pgTable, text, varchar, timestamp, jsonb, primaryKey, boolean } from "drizzle-orm/pg-core";
 
 // 1️⃣ Users Table - tied to Supabase Auth users
 export const users = pgTable("users", {
@@ -15,7 +15,9 @@ export const snippets = pgTable("snippets", {
   title: text("title").notNull(),
   content: jsonb("content").notNull(),  // { code: "...", language: "javascript" }
   authorId: text("author_id").references(() => users.id).notNull(),
-  createdAt: timestamp("created_at").defaultNow()
+  isPublic: boolean("is_public").default(false),
+  createdAt: timestamp("created_at").defaultNow(),
+  updatedAt: timestamp("updated_at").defaultNow()
 });
 
 // 3️⃣ Tags Table - list of tags (predefined + user-added later)
