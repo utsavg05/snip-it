@@ -1,37 +1,33 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import SnippetCard from "../snippets/SnippetCard";
 
 type DashboardTabsProps = {
   mySnippets: any[];
-  publicSnippets: any[];
+  likedSnippets: any[]; // ✅ ADD
   userId: string;
 };
 
-const TABS = ["my", "public", "liked"] as const;
+const TABS = ["my", "liked"] as const;
 
 export default function DashboardTabs({
   mySnippets,
-  publicSnippets,
+  likedSnippets,
   userId,
 }: DashboardTabsProps) {
-  const [activeTab, setActiveTab] = useState<(typeof TABS)[number]>("my");
+  const [activeTab, setActiveTab] =
+    useState<(typeof TABS)[number]>("my");
+  const router = useRouter();
 
-  function renderSnippets() {
-    if (activeTab === "my") {
-      return mySnippets;
-    }
-
-    if (activeTab === "public") {
-      return publicSnippets;
-    }
-
-    // liked — placeholder for now
-    return [];
+  function handleTabChange(tab: (typeof TABS)[number]) {
+    setActiveTab(tab);
+    router.refresh(); // 🔥 IMPORTANT: refresh server data
   }
 
-  const snippets = renderSnippets();
+  const snippets =
+    activeTab === "my" ? mySnippets : likedSnippets;
 
   return (
     <>
@@ -40,18 +36,14 @@ export default function DashboardTabs({
         {TABS.map((tab) => (
           <button
             key={tab}
-            onClick={() => setActiveTab(tab)}
+            onClick={() => handleTabChange(tab)}
             className={`pb-3 text-sm font-medium transition ${
               activeTab === tab
                 ? "border-b-2 border-emerald-400 text-white"
                 : "text-slate-400 hover:text-white"
             }`}
           >
-            {tab === "my"
-              ? "My Snippets"
-              : tab === "public"
-              ? "Public"
-              : "Liked"}
+            {tab === "my" ? "My Snippets" : "Liked"}
           </button>
         ))}
       </div>
@@ -65,17 +57,26 @@ export default function DashboardTabs({
         ) : (
           snippets.map((snippet) => (
             <SnippetCard
-              key={snippet.id}
+              key={`${activeTab}-${snippet.id}`}
+              id={snippet.id}
               title={snippet.title}
               code={snippet.content.code}
               language={snippet.content.language}
               isPublic={snippet.isPublic}
-              createdAt={new Date(snippet.createdAt).toLocaleDateString()}
-              likesCount={0}
+              createdAt={new Date(
+                snippet.createdAt
+              ).toLocaleDateString()}
+              likesCount={snippet.likesCount ?? 0} // ✅ REAL
+              isLiked={snippet.isLiked ?? false}    // ✅ REAL
               isOwner={snippet.authorId === userId}
               author={{
-                username: snippet.author?.username ?? "You",
-                avatar: snippet.author?.avatar,
+                username:
+                  snippet.author?.username ??
+                  snippet.authorUsername ??
+                  "You",
+                avatar:
+                  snippet.author?.avatar ??
+                  snippet.authorAvatar,
               }}
             />
           ))

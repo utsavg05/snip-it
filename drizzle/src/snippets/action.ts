@@ -5,7 +5,7 @@ import { db } from "@/drizzle/src/index";
 import { snippetLikes, snippets, users } from "@/drizzle/src/db/schema";
 import { createSupabaseServerClient } from "@/lib/supabase/server-client";
 import { nanoid } from "nanoid";
-import { eq, sql } from "drizzle-orm";
+import { desc, eq, sql } from "drizzle-orm";
 
 type CreateSnippetInput = {
   title: string;
@@ -124,4 +124,39 @@ export async function getLikedSnippets() {
     .leftJoin(users, eq(users.id, snippets.authorId))
     .where(eq(snippetLikes.userId, user.id))
     .orderBy(snippetLikes.createdAt);
+}
+
+export async function getExploreSnippets() {
+  const rows = await db
+    .select({
+      id: snippets.id,
+      title: snippets.title,
+      content: snippets.content,
+      isPublic: snippets.isPublic,
+      createdAt: snippets.createdAt,
+
+      authorId: users.id,
+      username: users.username,
+      avatar: users.avatar,
+    })
+    .from(snippets)
+    .leftJoin(users, eq(snippets.authorId, users.id))
+    .where(eq(snippets.isPublic, true))
+    .orderBy(desc(snippets.createdAt))
+    .limit(20);
+
+  return rows.map((row) => ({
+    id: row.id,
+    title: row.title,
+    content: row.content,
+    isPublic: row.isPublic,
+    createdAt: row.createdAt,
+    author: {
+      id: row.authorId,
+      username: row.username ?? "Anonymous",
+      avatar: row.avatar,
+    },
+    likesCount: 0,   // placeholder (we fix later)
+    isLiked: false,  // placeholder
+  }));
 }

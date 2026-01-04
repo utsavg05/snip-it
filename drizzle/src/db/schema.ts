@@ -1,5 +1,10 @@
 // drizzle/schema.ts
 import { pgTable, text, varchar, timestamp, jsonb, primaryKey, boolean } from "drizzle-orm/pg-core";
+export type SnippetContent = {
+  code: string;
+  language: string;
+};
+
 
 // 1️⃣ Users Table - tied to Supabase Auth users
 export const users = pgTable("users", {
@@ -13,7 +18,7 @@ export const users = pgTable("users", {
 export const snippets = pgTable("snippets", {
   id: text("id").primaryKey(),          // can store UUID from client
   title: text("title").notNull(),
-  content: jsonb("content").notNull(),  // { code: "...", language: "javascript" }
+  content: jsonb("content").$type<SnippetContent>().notNull(),  // { code: "...", language: "javascript" }
   authorId: text("author_id").references(() => users.id).notNull(),
   isPublic: boolean("is_public").default(false),
   createdAt: timestamp("created_at").defaultNow(),
