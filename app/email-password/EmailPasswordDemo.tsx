@@ -3,7 +3,7 @@
 import { getSupabaseBrowserClient } from "@/lib/supabase/browser-client";
 import { User } from "@supabase/supabase-js";
 import { useState, useEffect } from "react";
-import { AuthDemoPage } from "../components/AuthDemoPage";
+import { AuthDemoPage } from "../components/landing/AuthDemoPage";
 
 type EmailPasswordDemoProps = {
   user: User | null;

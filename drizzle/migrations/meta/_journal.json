@@ -8,6 +8,13 @@
       "when": 1767016027113,
       "tag": "0000_early_gorgon",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1767442236423,
+      "tag": "0001_regular_gravity",
+      "breakpoints": true
     }
   ]
 }

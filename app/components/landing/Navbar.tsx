@@ -70,6 +70,9 @@ export default async function Navbar() {
           <Link href="#examples" className="hover:text-white">
             Examples
           </Link>
+          <Link href="/dashboard" className="hover:text-white">
+            Dashboard
+          </Link>
         </div>
 
         {/* Right side */}

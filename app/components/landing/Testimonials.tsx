@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { CoolMode } from "@/components/ui/cool-mode";
+import { RainbowButton } from "@/components/ui/rainbow-button";
 import Link from "next/link";
 
 const testimonials = [
@@ -54,13 +55,14 @@ export default function Testimonials() {
             <div className="mx-auto max-w-6xl px-6 pb-10 text-center">
                 <CoolMode>
                 <Link href="https://x.com/0xdevug" target="_blank" rel="noopener noreferrer">
-                    <Button
+                    {/* <Button
                         size="lg"
                         variant="outline"
                         className="text-center cursor-pointer rounded-none border-white/15 px-8 py-6 text-base text-black bg-white hover:bg-white/80"
                     >
                         Follow us on X (formerly Twitter)
-                    </Button>
+                    </Button> */}
+                    <RainbowButton variant={"outline"}>Follow us on X (formerly Twitter)</RainbowButton>
                 </Link>
                 </CoolMode>
             </div>

@@ -120,6 +120,7 @@
 
 
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const snippets = [
   {
@@ -279,12 +280,14 @@ export default function ExampleSnippets() {
 
         {/* CTA */}
         <div className="mt-14 text-center">
+          <Link href="/auth">
           <Button
             size="lg"
             className="rounded-none cursor-pointer bg-emerald-500 px-8 py-6 text-base font-semibold text-black hover:bg-emerald-400"
           >
             Explore all snippets
           </Button>
+          </Link>
         </div>
       </div>
     </section>
