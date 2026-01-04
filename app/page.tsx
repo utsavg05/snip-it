@@ -1,10 +1,13 @@
-import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import SocialProof from "./components/SocialProof";
-import HowItWorks from "./components/HowItWorks";
-import ExampleSnippets from "./components/ExampleSnippets";
-import Testimonials from "./components/Testimonials";
-import Footer from "./components/Footer";
+import Navbar from "./components/landing/Navbar";
+import Hero from "./components/landing/Hero";
+import SocialProof from "./components/landing/SocialProof";
+import HowItWorks from "./components/landing/HowItWorks";
+import ExampleSnippets from "./components/landing/ExampleSnippets";
+import Testimonials from "./components/landing/Testimonials";
+import Footer from "./components/landing/Footer";
+import { Button } from "@/components/ui/button";
+import { RainbowButton } from "@/components/ui/rainbow-button";
+import Link from "next/link";
 
 
 export default function Home() {
@@ -17,6 +20,9 @@ export default function Home() {
     <ExampleSnippets />
     <Testimonials />
     <Footer />
+    <Link href="/snippets/new">
+    <RainbowButton variant={"outline"} className="fixed bottom-10 right-6 px-4 py-5 cursor-pointer ">Create</RainbowButton>
+    </Link>
     </>
   );
 }
