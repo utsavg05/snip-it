@@ -67,11 +67,11 @@ export default function SnippetCard({
 
         if (liked) {
             setLiked(false);
-            setCount((c) => c - 1);
+            setCount((prev) => Math.max(0, Number(prev) - 1));
             await unlikeSnippet(id);
         } else {
             setLiked(true);
-            setCount((c) => c + 1);
+            setCount((prev) => Number(prev) + 1);
             await likeSnippet(id);
         }
     }
@@ -102,7 +102,7 @@ export default function SnippetCard({
                     onClick={handleLikeToggle}
                     disabled={isPending}
                     className={`flex items-center gap-1 text-sm transition ${liked
-                        ? "text-emerald-400"
+                        ? "text-red-500"
                         : "text-slate-400 hover:text-white"
                         }`}
                 >
@@ -159,7 +159,7 @@ export default function SnippetCard({
                         </div>
                     )}
                     <span>{author.username ?? "Anonymous"}</span>
-                    <span className="text-xs">· {createdAt}</span>
+                    <span className="text-xs">· {new Date(createdAt).toISOString().split("T")[0]}</span>
                 </div>
 
                 {/* Actions */}

@@ -16,11 +16,11 @@ export default async function DashboardPage() {
 
   const [mySnippets, likedSnippets] = await Promise.all([
     getMySnippets(),
-    getLikedSnippets(), // ✅ ADD THIS
+    getLikedSnippets(),
   ]);
 
   return (
-    <main className="mx-auto max-w-7xl px-6 py-20 text-white">
+    <main className="mx-auto max-w-7xl px-6 py-20 text-white mt-3">
       <h1 className="text-3xl font-semibold">Dashboard</h1>
       <p className="mt-2 text-slate-400">
         Manage your snippets

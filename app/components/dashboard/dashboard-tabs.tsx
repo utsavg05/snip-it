@@ -23,7 +23,7 @@ export default function DashboardTabs({
 
   function handleTabChange(tab: (typeof TABS)[number]) {
     setActiveTab(tab);
-    router.refresh(); // 🔥 IMPORTANT: refresh server data
+    // router.refresh();
   }
 
   const snippets =
@@ -63,9 +63,7 @@ export default function DashboardTabs({
               code={snippet.content.code}
               language={snippet.content.language}
               isPublic={snippet.isPublic}
-              createdAt={new Date(
-                snippet.createdAt
-              ).toLocaleDateString()}
+              createdAt={snippet.createdAt}
               likesCount={snippet.likesCount ?? 0} // ✅ REAL
               isLiked={snippet.isLiked ?? false}    // ✅ REAL
               isOwner={snippet.authorId === userId}

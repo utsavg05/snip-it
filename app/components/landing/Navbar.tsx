@@ -52,8 +52,8 @@ export default async function Navbar() {
     <nav className="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-[#0b0f0e]/70 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-8 py-4">
         {/* Logo */}
-        <Link href="/" className="text-lg font-semibold tracking-tight">
-          Snip<span className="text-emerald-400">-</span>It
+        <Link href="/" className="text-xl font-semibold tracking-tight">
+          Snip<span className="text-emerald-400 font-bold">HUB</span>
         </Link>
 
         {/* Links */}
@@ -70,8 +70,11 @@ export default async function Navbar() {
           <Link href="#examples" className="hover:text-white">
             Examples
           </Link>
-          <Link href="/dashboard" className="hover:text-white">
+          <Link href="/dashboard" className={`hover:text-white ${user ? "block" : "hidden"}`}>
             Dashboard
+          </Link>
+          <Link href="/explore" className={`hover:text-white ${user ? "block" : "hidden"}`}>
+            Explore
           </Link>
         </div>
 

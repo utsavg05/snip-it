@@ -9,6 +9,7 @@ const LANGUAGES = [
   "python",
   "java",
   "cpp",
+  "c",
   "go",
   "rust",
   "sql",
@@ -49,7 +50,7 @@ export default function CreateSnippetForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="rounded-3xl border border-white/10 bg-[#0b0f0e]/80 p-8 backdrop-blur"
+      className="rounded-3xl border border-white/10 bg-[#0b0f0e]/80 p-7 backdrop-blur"
     >
       {/* Title */}
       <div>
@@ -69,7 +70,7 @@ export default function CreateSnippetForm() {
         <select
           value={language}
           onChange={(e) => setLanguage(e.target.value)}
-          className="mt-2 w-full rounded-xl border border-white/10 bg-black/40 px-4 py-3 text-white"
+          className="mt-2 w-full rounded-xl border border-white/10 bg-black px-4 py-3 text-white"
         >
           {LANGUAGES.map((lang) => (
             <option key={lang} value={lang}>

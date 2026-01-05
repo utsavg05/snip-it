@@ -120,6 +120,7 @@
 
 
 import { Button } from "@/components/ui/button";
+import { getAuthUser } from "@/lib/auth";
 import Link from "next/link";
 
 const snippets = [
@@ -189,7 +190,10 @@ export const pool = new Pool({
   },
 ];
 
-export default function ExampleSnippets() {
+export default async function ExampleSnippets() {
+
+  const user = await getAuthUser();
+
   return (
     <section
       id="examples"
@@ -280,7 +284,7 @@ export default function ExampleSnippets() {
 
         {/* CTA */}
         <div className="mt-14 text-center">
-          <Link href="/auth">
+          <Link href={`${user ? "/explore" : "/auth"}`}>
           <Button
             size="lg"
             className="rounded-none cursor-pointer bg-emerald-500 px-8 py-6 text-base font-semibold text-black hover:bg-emerald-400"

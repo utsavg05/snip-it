@@ -168,6 +168,7 @@ import { User } from "@supabase/supabase-js";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { ShineBorder } from "@/components/ui/shine-border";
+import { ToastContainer, toast } from 'react-toastify';
 
 export default function AuthPage({ user }: { user: User | null }) {
   const supabase = getSupabaseBrowserClient();
@@ -178,7 +179,7 @@ export default function AuthPage({ user }: { user: User | null }) {
   const [currentUser, setCurrentUser] = useState<User | null>(user);
 
   const router = useRouter();
-
+  
   useEffect(() => {
     async function loadSession() {
       const { data } = await supabase.auth.getSession();
@@ -257,7 +258,6 @@ export default function AuthPage({ user }: { user: User | null }) {
           />
           Continue with GitHub
         </button>
-
         {/* Divider */}
         <div className="my-4 flex items-center gap-3 text-xs text-slate-400">
           <div className="h-px flex-1 bg-white/10" />
