@@ -117,6 +117,16 @@ export default function SnippetModal({
         c: "c",
         rust: "rust",
         go: "go",
+        sql: "sql",
+        typescript: "typescript",
+        bash: "bash",
+        shell: "bash",
+        plaintext: "plaintext",
+        csharp: "csharp",
+        php: "php",
+        ruby: "ruby",
+        swift: "swift",
+        kotlin: "kotlin",
     };
 
     const resolvedLanguage = SHIKI_LANG_MAP[language.toLowerCase()] ?? "plaintext";
@@ -134,7 +144,7 @@ export default function SnippetModal({
                 {/* Meta */}
                 <div className="flex items-center gap-4 text-sm text-slate-400">
                     <span className="rounded-full bg-white/10 px-3 py-1 font-mono">
-                        {language}
+                        {resolvedLanguage}
                     </span>
                     {isPublic ? (
                         <span className="flex items-center gap-1 text-emerald-400">
@@ -151,12 +161,7 @@ export default function SnippetModal({
                 {/* Code */}
                 <div className="relative mt-4 max-h-[400px] overflow-auto scrollbar-hide rounded-xl bg-black/70">
                     <div
-                        className="
-      max-h-[400px]
-      overflow-auto
-      scrollbar-hide
-      p-4
-    "
+                        className="max-h-[400px] overflow-auto scrollbar-hide p-4"
                     >
                         <CodeBlock code={code} language={resolvedLanguage} />
                     </div>

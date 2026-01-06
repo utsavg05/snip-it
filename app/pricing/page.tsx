@@ -41,7 +41,7 @@ export default async function Pricing() {
             </div>
 
             <ul className="mt-8 space-y-3 text-slate-300">
-              <li><span className="text-emerald-400">✓</span> Up to 50 snippets</li>
+              <li><span className="text-emerald-400">✓</span> Create upto 50 snippets</li>
               <li><span className="text-emerald-400">✓</span> Private dashboard</li>
               <li><span className="text-emerald-400">✓</span> Tags & languages</li>
               <li><span className="text-emerald-400">✓</span> Copy snippets instantly</li>
