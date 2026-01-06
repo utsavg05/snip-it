@@ -10,6 +10,7 @@ import { Copy, Heart, Globe, Lock } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { likeSnippet, unlikeSnippet } from "@/drizzle/src/snippets/likes";
+import CodeBlock from "./CodeBlock";
 
 type SnippetModalProps = {
   open: boolean;
@@ -100,7 +101,8 @@ export default function SnippetModal({
 
         {/* Code */}
         <div className="relative mt-4 max-h-[400px] overflow-auto rounded-xl bg-black/70 p-4 font-mono text-sm">
-          <pre className="whitespace-pre-wrap">{code}</pre>
+          {/* <pre className="whitespace-pre-wrap">{code}</pre> */}
+          <CodeBlock code={code} language={language} />
         </div>
 
         {/* Tags */}
