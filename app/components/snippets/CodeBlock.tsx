@@ -16,13 +16,13 @@ export default function CodeBlock({ code, language }: CodeBlockProps) {
 
     async function highlight() {
       const highlighter = await createHighlighter({
-        themes: ["github-dark"],
+        themes: ["monokai", "github-dark", "nord", "dracula", "solarized-dark",],
         langs: [language, "plaintext"],
       });
 
       const highlighted = highlighter.codeToHtml(
         code,
-        { lang: language, theme: "github-dark" }
+        { lang: language, theme: "dracula" }
       );
 
       if (mounted) setHtml(highlighted);
@@ -37,7 +37,7 @@ export default function CodeBlock({ code, language }: CodeBlockProps) {
 
   return (
     <div
-      className="overflow-auto rounded-xl bg-black/70 p-4 text-sm"
+      className="overflow-auto rounded-xl bg-black/70 p-2 text-sm"
       dangerouslySetInnerHTML={{ __html: html }}
     />
   );
