@@ -13,6 +13,15 @@ const LANGUAGES = [
   "go",
   "rust",
   "sql",
+  "react",
+  "node",
+  "csharp",
+  "php",
+  "ruby",
+  "swift",
+  "kotlin",
+  "bash",
+  "plaintext",
 ];
 
 export default function CreateSnippetForm() {

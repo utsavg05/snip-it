@@ -108,7 +108,7 @@ export default function SnippetModal({
         ts: "typescript",
         tsx: "tsx",
         jsx: "jsx",
-        react: "tsx",     // 👈 IMPORTANT
+        react: "tsx",     
         node: "javascript",
         nodejs: "javascript",
         python: "python",
@@ -127,10 +127,12 @@ export default function SnippetModal({
         ruby: "ruby",
         swift: "swift",
         kotlin: "kotlin",
+        docker: "dockerfile",
+        html: "html",
+        css: "css",
     };
 
     const resolvedLanguage = SHIKI_LANG_MAP[language.toLowerCase()] ?? "plaintext";
-
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
