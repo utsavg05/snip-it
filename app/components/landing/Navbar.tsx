@@ -41,6 +41,7 @@ import Image from "next/image";
 import Link from "next/link";
 import UserMenu from "./UserMenu";
 import { CoolMode } from "@/components/ui/cool-mode";
+import { ChevronsLeftRightEllipsis, Code, Codesandbox, CopySlash, SquareDashedBottomCode } from "lucide-react";
 
 export default async function Navbar() {
   const supabase = await createSupabaseServerClient();
@@ -52,28 +53,43 @@ export default async function Navbar() {
     <nav className="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-[#0b0f0e]/70 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-8 py-4">
         {/* Logo */}
-        <Link href="/" className="text-xl font-semibold tracking-tight">
-          Snip<span className="text-emerald-400 font-bold">HUB</span>
-        </Link>
+        <div className="flex items-center w-1/5 shrink-0">
+          <Link href="/" className="text-xl flex items-center justify-center gap-1.5 font-semibold tracking-tight">
+          {/* <CopySlash className="text-emerald-400" size={32} /> */}
+          <Codesandbox className="text-emerald-400" size={28} />
+            <span className="text-white font-bold">SnipHUB</span>
+          </Link>
+        </div>
+        {/* <div className="flex items-center w-1/5 shrink-0">
+            <Link
+              href="/#"
+              className="flex items-center cursor-pointer hover:opacity-90 transition-all duration-300 group whitespace-nowrap"
+            >
+              <SquareDashedBottomCode className="me-[5px] h-5 w-5 text-primary" />
+              <span className="text-xl font-bold bg-linear-to-r from-gray-900 to-gray-700 dark:from-white dark:to-gray-300 bg-clip-text text-transparent group-hover:from-primary group-hover:to-primary-dark transition-all duration-300">
+                SnipHUB
+              </span>
+            </Link>
+          </div> */}
 
         {/* Links */}
-        <div className="hidden items-center gap-8 text-sm text-slate-300 md:flex">
-          <Link href="/" className="hover:text-white">
+        <div className="hidden items-center gap-10 text-sm text-slate-300 md:flex mr-30">
+          <Link href="/" className="hover:text-emerald-400 transition-all duration-300 text-md font-semibold">
             Home
           </Link>
-          <Link href="#features" className="hover:text-white">
+          <Link href="#features" className="hover:text-emerald-400 transition-all duration-300 text-md font-semibold">
             Features
           </Link>
-          <Link href="/pricing" className="hover:text-white">
+          <Link href="/pricing" className="hover:text-emerald-400 transition-all duration-300 text-md font-semibold">
             Pricing
           </Link>
-          <Link href="#examples" className="hover:text-white">
+          <Link href="#examples" className="hover:text-emerald-400 transition-all duration-300 text-md font-semibold">
             Examples
           </Link>
-          <Link href="/dashboard" className={`hover:text-white ${user ? "block" : "hidden"}`}>
+          <Link href="/dashboard" className={`hover:text-emerald-400 transition-all duration-300 text-md font-semibold ${user ? "block" : "hidden"}`}>
             Dashboard
           </Link>
-          <Link href="/explore" className={`hover:text-white ${user ? "block" : "hidden"}`}>
+          <Link href="/explore" className={`hover:text-emerald-400 transition-all duration-300 text-md font-semibold ${user ? "block" : "hidden"}`}>
             Explore
           </Link>
         </div>
@@ -110,12 +126,12 @@ export default async function Navbar() {
           <UserMenu user={user} />
         ) : (
           <CoolMode>
-          <Link
-            href="/auth"
-            className="bg-emerald-500 px-5 py-2 text-sm font-semibold text-black hover:bg-emerald-400"
-          >
-            Login
-          </Link>
+            <Link
+              href="/auth"
+              className="bg-emerald-500 px-5 py-2 text-sm font-semibold text-black hover:bg-emerald-400"
+            >
+              Login
+            </Link>
           </CoolMode>
         )}
       </div>
