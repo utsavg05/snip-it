@@ -10,7 +10,7 @@ export default function Footer() {
           {/* Brand */}
           <div>
             <h3 className="text-lg font-bold text-white">
-              Snip<span className="text-emerald-400">-</span>It
+              SnipHUB
             </h3>
             <p className="mt-4 text-sm leading-relaxed text-slate-300">
               Save, organize, and reuse your best code snippets without
@@ -106,7 +106,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="mt-8 flex flex-col items-center justify-between gap-4 border-white/5 pt-8 text-sm text-slate-300 sm:flex-row">
           <p>
-            © {new Date().getFullYear()} Snip-It. All rights reserved.
+            © {new Date().getFullYear()} SnipHUB. All rights reserved.
           </p>
           <p className="text-slate-300">
             Built for developers.
