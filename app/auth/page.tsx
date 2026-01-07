@@ -160,6 +160,175 @@
 
 
 
+// "use client";
+
+// import { getSupabaseBrowserClient } from "@/lib/supabase/browser-client";
+// import { useEffect, useState } from "react";
+// import { User } from "@supabase/supabase-js";
+// import Image from "next/image";
+// import { useRouter } from "next/navigation";
+// import { ShineBorder } from "@/components/ui/shine-border";
+// import { ToastContainer, toast } from 'react-toastify';
+
+// export default function AuthPage({ user }: { user: User | null }) {
+//   const supabase = getSupabaseBrowserClient();
+//   const [mode, setMode] = useState<"signup" | "signin">("signin");
+//   const [email, setEmail] = useState("");
+//   const [password, setPassword] = useState("");
+//   const [status, setStatus] = useState("");
+//   const [currentUser, setCurrentUser] = useState<User | null>(user);
+
+//   const router = useRouter();
+  
+//   useEffect(() => {
+//     async function loadSession() {
+//       const { data } = await supabase.auth.getSession();
+//       setCurrentUser(data.session?.user ?? null);
+//     }
+//     loadSession();
+
+//     const { data: listener } = supabase.auth.onAuthStateChange(
+//       (_event, session) => { setCurrentUser(session?.user ?? null) }
+//     );
+//     return () => listener.subscription.unsubscribe();
+//   }, [supabase]);
+
+//   async function handleEmailAuth(e: React.FormEvent<HTMLFormElement>) {
+//     e.preventDefault();
+
+//     if (mode === "signup") {
+//       const { error } = await supabase.auth.signUp({
+//         email,
+//         password,
+//         options: { emailRedirectTo: `${window.location.origin}/auth` },
+//       });
+//       setStatus(
+//         error ? error.message : "Check your email to confirm your account."
+//       );
+//     } else {
+//       const { error } = await supabase.auth.signInWithPassword({
+//         email,
+//         password,
+//       });
+//       setStatus(error ? error.message : "Signed in successfully.");
+//       router.push("/");
+//     }
+//   }
+
+//   async function handleGithubLogin() {
+//     await supabase.auth.signInWithOAuth({
+//       provider: "github",
+//       options: {
+//         redirectTo: `${window.location.origin}/auth/callback`,
+//         skipBrowserRedirect: false,
+//       },
+//     });
+//   }
+
+//   async function handleLogout() {
+//     await supabase.auth.signOut();
+//     setCurrentUser(null);
+//   }
+
+//   return (
+//     <div className="mx-auto mt-24 max-w-md px-4 text-white">
+//       <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur">
+//       <ShineBorder shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]} />
+//         {/* Header */}
+//         <div className="mb-6 text-center">
+//           <h2 className="text-2xl font-semibold">
+//             {mode === "signup" ? "Create an account" : "Welcome back"}
+//           </h2>
+//           <p className="mt-1 text-sm text-slate-400">
+//             Save and reuse your best code snippets.
+//           </p>
+//         </div>
+
+//         {/* GitHub */}
+//         <button
+//           onClick={handleGithubLogin}
+//           className="mb-4 flex w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 py-2.5 text-sm font-semibold hover:bg-white/10"
+//         >
+//           <Image
+//             src="/github-icon.svg"
+//             alt="GitHub"
+//             width={20}
+//             height={20}
+//             className="invert"
+//           />
+//           Continue with GitHub
+//         </button>
+//         {/* Divider */}
+//         <div className="my-4 flex items-center gap-3 text-xs text-slate-400">
+//           <div className="h-px flex-1 bg-white/10" />
+//           or
+//           <div className="h-px flex-1 bg-white/10" />
+//         </div>
+
+//         {/* Email form */}
+//         <form onSubmit={handleEmailAuth} className="space-y-4">
+//           <input
+//             type="email"
+//             placeholder="you@email.com"
+//             value={email}
+//             onChange={(e) => setEmail(e.target.value)}
+//             required
+//             className="w-full rounded-xl border border-white/10 bg-[#0b1b18] px-4 py-3 text-sm outline-none focus:border-emerald-400"
+//           />
+//           <input
+//             type="password"
+//             placeholder="Password"
+//             value={password}
+//             onChange={(e) => setPassword(e.target.value)}
+//             required
+//             className="w-full rounded-xl border border-white/10 bg-[#0b1b18] px-4 py-3 text-sm outline-none focus:border-emerald-400"
+//           />
+
+//           <button className="w-full rounded-full bg-emerald-500 py-3 text-sm font-semibold text-black hover:bg-emerald-400">
+//             {mode === "signup" ? "Create account" : "Sign in"}
+//           </button>
+//         </form>
+
+//         {/* Toggle */}
+//         <p className="mt-4 text-center text-sm text-slate-400">
+//           {mode === "signup" ? "Already have an account?" : "New here?"}{" "}
+//           <button
+//             onClick={() =>
+//               setMode(mode === "signup" ? "signin" : "signup")
+//             }
+//             className="font-medium text-emerald-400 hover:underline"
+//           >
+//             {mode === "signup" ? "Sign in" : "Create account"}
+//           </button>
+//         </p>
+
+//         {status && (
+//           <p className="mt-4 text-center text-sm text-emerald-300">
+//             {status}
+//           </p>
+//         )}
+//       </div>
+
+//       {/* -------- SESSION PANEL -------- */}
+//       {currentUser && (
+//         <div className="mt-5 rounded-[28px] border border-white/10 bg-white/5 p-7 text-slate-200 backdrop-blur">
+//           <h3 className="text-lg font-semibold">Logged in as:</h3>
+//           <p className="mt-1 text-sm text-slate-300">{currentUser.email}</p>
+//           <button
+//             onClick={handleLogout}
+//             className="mt-5 w-full rounded-full bg-red-500 py-2.5 font-semibold"
+//           >
+//             Logout
+//           </button>
+//         </div>
+//       )}
+//     </div>
+//   );
+// }
+
+
+
+
 "use client";
 
 import { getSupabaseBrowserClient } from "@/lib/supabase/browser-client";
@@ -168,50 +337,90 @@ import { User } from "@supabase/supabase-js";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { ShineBorder } from "@/components/ui/shine-border";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast } from "react-toastify";
 
 export default function AuthPage({ user }: { user: User | null }) {
   const supabase = getSupabaseBrowserClient();
+  const router = useRouter();
+
   const [mode, setMode] = useState<"signup" | "signin">("signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [status, setStatus] = useState("");
   const [currentUser, setCurrentUser] = useState<User | null>(user);
+  const [loading, setLoading] = useState(false);
 
-  const router = useRouter();
-  
+  /**
+   * ✅ Auth state listener
+   * This fixes the "user only appears after refresh" issue
+   */
+  // useEffect(() => {
+  //   const {
+  //     data: { subscription },
+  //   } = supabase.auth.onAuthStateChange((event, session) => {
+  //     setCurrentUser(session?.user ?? null);
+
+  //     if (event === "SIGNED_IN" && session?.user) {
+  //       toast.success("Signed in successfully");
+  //       router.replace("/");
+  //     }
+
+  //     if (event === "SIGNED_OUT") {
+  //       toast.info("Logged out");
+  //     }
+  //   });
+
+  //   return () => subscription.unsubscribe();
+  // }, [supabase, router]);
+
   useEffect(() => {
-    async function loadSession() {
-      const { data } = await supabase.auth.getSession();
-      setCurrentUser(data.session?.user ?? null);
-    }
-    loadSession();
+  const url = new URL(window.location.href);
 
-    const { data: listener } = supabase.auth.onAuthStateChange(
-      (_event, session) => { setCurrentUser(session?.user ?? null) }
-    );
-    return () => listener.subscription.unsubscribe();
-  }, [supabase]);
+  if (url.searchParams.get("auth") === "success") {
+    supabase.auth.getSession().then(({ data }) => {
+      if (data.session?.user) {
+        setCurrentUser(data.session.user);
+        toast.success("Signed in successfully");
+        router.replace("/");
+      }
+    });
+  }
+}, [supabase, router]);
+
 
   async function handleEmailAuth(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (loading) return;
 
-    if (mode === "signup") {
-      const { error } = await supabase.auth.signUp({
-        email,
-        password,
-        options: { emailRedirectTo: `${window.location.origin}/` },
-      });
-      setStatus(
-        error ? error.message : "Check your email to confirm your account."
-      );
-    } else {
-      const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-      setStatus(error ? error.message : "Signed in successfully.");
-      router.push("/");
+    setLoading(true);
+
+    try {
+      if (mode === "signup") {
+        const { error } = await supabase.auth.signUp({
+          email,
+          password,
+          options: {
+            emailRedirectTo: `${window.location.origin}/auth/callback`,
+          },
+        });
+
+        if (error) {
+          toast.error(error.message);
+        } else {
+          toast.info("Check your email to confirm your account");
+        }
+      } else {
+        const { error } = await supabase.auth.signInWithPassword({
+          email,
+          password,
+        });
+
+        if (error) {
+          toast.error(error.message);
+        }
+        // ❗ No redirect here — handled by auth listener
+      }
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -220,7 +429,6 @@ export default function AuthPage({ user }: { user: User | null }) {
       provider: "github",
       options: {
         redirectTo: `${window.location.origin}/auth/callback`,
-        skipBrowserRedirect: false,
       },
     });
   }
@@ -231,97 +439,102 @@ export default function AuthPage({ user }: { user: User | null }) {
   }
 
   return (
-    <div className="mx-auto mt-24 max-w-md px-4 text-white">
-      <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur">
-      <ShineBorder shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]} />
-        {/* Header */}
-        <div className="mb-6 text-center">
-          <h2 className="text-2xl font-semibold">
-            {mode === "signup" ? "Create an account" : "Welcome back"}
-          </h2>
-          <p className="mt-1 text-sm text-slate-400">
-            Save and reuse your best code snippets.
-          </p>
-        </div>
+    <>
 
-        {/* GitHub */}
-        <button
-          onClick={handleGithubLogin}
-          className="mb-4 flex w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 py-2.5 text-sm font-semibold hover:bg-white/10"
-        >
-          <Image
-            src="/github-icon.svg"
-            alt="GitHub"
-            width={20}
-            height={20}
-            className="invert"
-          />
-          Continue with GitHub
-        </button>
-        {/* Divider */}
-        <div className="my-4 flex items-center gap-3 text-xs text-slate-400">
-          <div className="h-px flex-1 bg-white/10" />
-          or
-          <div className="h-px flex-1 bg-white/10" />
-        </div>
+      <div className="mx-auto mt-24 max-w-md px-4 text-white">
+        <div className="relative overflow-hidden  rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur">
+          <ShineBorder shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]} />
 
-        {/* Email form */}
-        <form onSubmit={handleEmailAuth} className="space-y-4">
-          <input
-            type="email"
-            placeholder="you@email.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            className="w-full rounded-xl border border-white/10 bg-[#0b1b18] px-4 py-3 text-sm outline-none focus:border-emerald-400"
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            className="w-full rounded-xl border border-white/10 bg-[#0b1b18] px-4 py-3 text-sm outline-none focus:border-emerald-400"
-          />
+          {/* Header */}
+          <div className="mb-6 text-center">
+            <h2 className="text-2xl font-semibold">
+              {mode === "signup" ? "Create an account" : "Welcome back"}
+            </h2>
+            <p className="mt-1 text-sm text-slate-400">
+              Save and reuse your best code snippets.
+            </p>
+          </div>
 
-          <button className="w-full rounded-full bg-emerald-500 py-3 text-sm font-semibold text-black hover:bg-emerald-400">
-            {mode === "signup" ? "Create account" : "Sign in"}
-          </button>
-        </form>
-
-        {/* Toggle */}
-        <p className="mt-4 text-center text-sm text-slate-400">
-          {mode === "signup" ? "Already have an account?" : "New here?"}{" "}
+          {/* GitHub OAuth */}
           <button
-            onClick={() =>
-              setMode(mode === "signup" ? "signin" : "signup")
-            }
-            className="font-medium text-emerald-400 hover:underline"
+            onClick={handleGithubLogin}
+            className="mb-4 flex w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 py-2.5 text-sm font-semibold hover:bg-white/10"
           >
-            {mode === "signup" ? "Sign in" : "Create account"}
+            <Image
+              src="/github-icon.svg"
+              alt="GitHub"
+              width={20}
+              height={20}
+              className="invert"
+            />
+            Continue with GitHub
           </button>
-        </p>
 
-        {status && (
-          <p className="mt-4 text-center text-sm text-emerald-300">
-            {status}
+          {/* Divider */}
+          <div className="my-4 flex items-center gap-3 text-xs text-slate-400">
+            <div className="h-px flex-1 bg-white/10" />
+            or
+            <div className="h-px flex-1 bg-white/10" />
+          </div>
+
+          {/* Email Auth */}
+          <form onSubmit={handleEmailAuth} className="space-y-4">
+            <input
+              type="email"
+              placeholder="you@email.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="w-full rounded-xl border border-white/10 bg-[#0b1b18] px-4 py-3 text-sm outline-none focus:border-emerald-400"
+            />
+
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className="w-full rounded-xl border border-white/10 bg-[#0b1b18] px-4 py-3 text-sm outline-none focus:border-emerald-400"
+            />
+
+            <button
+              disabled={loading}
+              className="w-full rounded-full bg-emerald-500 py-3 text-sm font-semibold text-black hover:bg-emerald-400 disabled:opacity-60"
+            >
+              {mode === "signup" ? "Create account" : "Sign in"}
+            </button>
+          </form>
+
+          {/* Toggle */}
+          <p className="mt-4 text-center text-sm text-slate-400">
+            {mode === "signup" ? "Already have an account?" : "New here?"}{" "}
+            <button
+              onClick={() =>
+                setMode(mode === "signup" ? "signin" : "signup")
+              }
+              className="font-medium text-emerald-400 hover:underline"
+            >
+              {mode === "signup" ? "Sign in" : "Create account"}
+            </button>
           </p>
+        </div>
+
+        {/* Session panel (optional / debug) */}
+        {currentUser && (
+          <div className="mt-5 rounded-[28px] border border-white/10 bg-white/5 p-7 text-slate-200 backdrop-blur">
+            <h3 className="text-lg font-semibold">Logged in as:</h3>
+            <p className="mt-1 text-sm text-slate-300">
+              {currentUser.email}
+            </p>
+            <button
+              onClick={handleLogout}
+              className="mt-5 w-full rounded-full bg-red-500 py-2.5 font-semibold"
+            >
+              Logout
+            </button>
+          </div>
         )}
       </div>
-
-      {/* -------- SESSION PANEL -------- */}
-      {currentUser && (
-        <div className="mt-5 rounded-[28px] border border-white/10 bg-white/5 p-7 text-slate-200 backdrop-blur">
-          <h3 className="text-lg font-semibold">Logged in as:</h3>
-          <p className="mt-1 text-sm text-slate-300">{currentUser.email}</p>
-          <button
-            onClick={handleLogout}
-            className="mt-5 w-full rounded-full bg-red-500 py-2.5 font-semibold"
-          >
-            Logout
-          </button>
-        </div>
-      )}
-    </div>
+    </>
   );
 }
