@@ -5,6 +5,7 @@ import Pagination from "../pagination";
 import ExplorePagination from "../pagination";
 import Link from "next/link";
 import { RainbowButton } from "@/components/ui/rainbow-button";
+import ExploreResultsClient from "./ExploreResultsClient";
 
 type Props = {
     //   lang: string | null;
@@ -30,7 +31,7 @@ export default async function ExploreResults({
             <Link href="/snippets/new">
                 <RainbowButton variant={"outline"} className="fixed rounded-xl text-md bottom-10 right-6 px-4 py-5 cursor-pointer ">Create</RainbowButton>
             </Link>
-            <ExploreGrid isLoading={false}>
+            <ExploreResultsClient>
                 {items.map((snippet) => (
                     <SnippetCard
                         key={snippet.id}
@@ -53,7 +54,7 @@ export default async function ExploreResults({
                         }}
                     />
                 ))}
-            </ExploreGrid>
+            </ExploreResultsClient>
             <div className="mt-10 flex justify-center">
                 <ExplorePagination currentPage={page} totalPages={totalPages} />
             </div>

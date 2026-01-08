@@ -41,7 +41,7 @@ import Image from "next/image";
 import Link from "next/link";
 import UserMenu from "./UserMenu";
 import { CoolMode } from "@/components/ui/cool-mode";
-import { ChevronsLeftRightEllipsis, Code, Codesandbox, CopySlash, SquareDashedBottomCode } from "lucide-react";
+import { ChevronsLeftRightEllipsis, Code, Codesandbox, CopySlash, Lock, LockKeyhole, SquareDashedBottomCode } from "lucide-react";
 
 export default async function Navbar() {
   const supabase = await createSupabaseServerClient();
@@ -55,8 +55,8 @@ export default async function Navbar() {
         {/* Logo */}
         <div className="flex items-center w-1/5 shrink-0">
           <Link href="/" className="text-xl flex items-center justify-center gap-1.5 font-semibold tracking-tight">
-          {/* <CopySlash className="text-emerald-400" size={32} /> */}
-          <Codesandbox className="text-emerald-400" size={28} />
+            {/* <CopySlash className="text-emerald-400" size={32} /> */}
+            <Codesandbox className="text-emerald-400" size={28} />
             <span className="text-white font-bold">SnipHUB</span>
           </Link>
         </div>
@@ -126,11 +126,11 @@ export default async function Navbar() {
           <UserMenu user={user} />
         ) : (
           <CoolMode>
-            <Link
-              href="/auth"
-              className="bg-emerald-500 px-5 py-2 text-sm font-semibold text-black hover:bg-emerald-400"
-            >
-              Login
+            <Link href="/auth">
+            <button className="cursor-pointer flex flex-row items-center gap-1 bg-emerald-500 rounded-xl px-5 py-2 text-sm font-semibold text-black hover:bg-emerald-400">
+              <span>Login</span>
+              <Lock size={18} className="text-black font-mono" />
+            </button>
             </Link>
           </CoolMode>
         )}

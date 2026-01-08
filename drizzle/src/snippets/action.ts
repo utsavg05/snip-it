@@ -300,8 +300,9 @@ import { db } from "@/drizzle/src/index";
 import { snippetLikes, snippets, users } from "@/drizzle/src/db/schema";
 import { createSupabaseServerClient } from "@/lib/supabase/server-client";
 import { nanoid } from "nanoid";
-import { and, desc, eq, sql } from "drizzle-orm";
+import { and, desc, eq, ilike, sql } from "drizzle-orm";
 import { getAuthUser } from "@/lib/auth";
+import { revalidatePath } from "next/cache";
 
 /* ------------------------------------------------------------------ */
 /* CREATE */
@@ -336,6 +337,76 @@ export async function createSnippet(input: CreateSnippetInput) {
 
   return { success: true };
 }
+
+// export async function deleteSnippet(snippetId: string) {
+//   const supabase = await createSupabaseServerClient();
+//   const {
+//     data: { user },
+//   } = await supabase.auth.getUser();
+
+//   if (!user) {
+//     throw new Error("Unauthorized");
+//   }
+
+//   // ✅ Ensure snippet belongs to user
+//   const deleted = await db
+//     .delete(snippets)
+//     .where(
+//       and(
+//         eq(snippets.id, snippetId),
+//         eq(snippets.authorId, user.id)
+//       )
+//     )
+//     .returning({ id: snippets.id });
+
+//   if (deleted.length === 0) {
+//     throw new Error("Snippet not found or not owned by user");
+//   }
+
+//   // ✅ Refresh feeds / dashboard
+//   revalidatePath("/dashboard");
+//   revalidatePath("/explore");
+
+//   return { success: true };
+// }
+
+export async function deleteSnippet(snippetId: string) {
+  const supabase = await createSupabaseServerClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) throw new Error("Unauthorized");
+
+  await db.transaction(async (tx) => {
+    // 1️⃣ delete likes first
+    await tx
+      .delete(snippetLikes)
+      .where(eq(snippetLikes.snippetId, snippetId));
+
+    // 2️⃣ delete snippet (ownership check)
+    const deleted = await tx
+      .delete(snippets)
+      .where(
+        and(
+          eq(snippets.id, snippetId),
+          eq(snippets.authorId, user.id)
+        )
+      )
+      .returning({ id: snippets.id });
+
+    if (deleted.length === 0) {
+      throw new Error("Snippet not found or not owned by user");
+    }
+  });
+
+  // 3️⃣ refresh UI
+  revalidatePath("/dashboard");
+  revalidatePath("/explore");
+
+  return { success: true };
+}
+
 
 /* ------------------------------------------------------------------ */
 /* MY SNIPPETS (FIXED) */
@@ -405,6 +476,8 @@ export async function getLikedSnippets() {
     .innerJoin(snippets, eq(snippets.id, snippetLikes.snippetId))
     .where(eq(snippetLikes.userId, user.id))
     .orderBy(desc(snippetLikes.createdAt));
+
+    revalidatePath("/dashboard");
 }
 
 /* ------------------------------------------------------------------ */
@@ -531,13 +604,33 @@ export async function getExploreSnippets() {
 export async function getExploreSnippetsPaginated({
   page = 1,
   limit = 12,
+  // lang,
+  // query
 }: {
   page?: number;
   limit?: number;
+  // lang?: string;
+  // query?: string;
 }) {
   const user = await getAuthUser();
 
   const offset = (page - 1) * limit;
+
+// const whereConditions = [
+//   eq(snippets.isPublic, true),
+// ];
+
+// if (lang) {
+//   whereConditions.push(
+//     ilike(sql`${snippets.content}->>'language'`, lang)
+//   );
+// }
+
+// if (query) {
+//   whereConditions.push(
+//     ilike(snippets.title, `%${query}%`)
+//   );
+// }
 
   // 1️⃣ Fetch paginated snippets
   const items = await db

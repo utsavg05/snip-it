@@ -8,10 +8,5 @@ export async function getAuthUser() {
     error,
   } = await supabase.auth.getUser();
 
-  if (error) {
-    console.error("Auth error:", error.message);
-    return null;
-  }
-
-  return user;
+  return user ?? null;
 }

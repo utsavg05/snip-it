@@ -337,7 +337,8 @@ import { User } from "@supabase/supabase-js";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { ShineBorder } from "@/components/ui/shine-border";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
+import { Eye, EyeOff } from "lucide-react";
 
 export default function AuthPage({ user }: { user: User | null }) {
   const supabase = getSupabaseBrowserClient();
@@ -348,29 +349,7 @@ export default function AuthPage({ user }: { user: User | null }) {
   const [password, setPassword] = useState("");
   const [currentUser, setCurrentUser] = useState<User | null>(user);
   const [loading, setLoading] = useState(false);
-
-  /**
-   * ✅ Auth state listener
-   * This fixes the "user only appears after refresh" issue
-   */
-  // useEffect(() => {
-  //   const {
-  //     data: { subscription },
-  //   } = supabase.auth.onAuthStateChange((event, session) => {
-  //     setCurrentUser(session?.user ?? null);
-
-  //     if (event === "SIGNED_IN" && session?.user) {
-  //       toast.success("Signed in successfully");
-  //       router.replace("/");
-  //     }
-
-  //     if (event === "SIGNED_OUT") {
-  //       toast.info("Logged out");
-  //     }
-  //   });
-
-  //   return () => subscription.unsubscribe();
-  // }, [supabase, router]);
+  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
   const url = new URL(window.location.href);
@@ -431,6 +410,7 @@ export default function AuthPage({ user }: { user: User | null }) {
         redirectTo: `${window.location.origin}/auth/callback`,
       },
     });
+    toast.success("Signed in successfully");
   }
 
   async function handleLogout() {
@@ -438,10 +418,26 @@ export default function AuthPage({ user }: { user: User | null }) {
     setCurrentUser(null);
   }
 
+  useEffect(() => {
+  const {
+    data: { subscription },
+  } = supabase.auth.onAuthStateChange((event, session) => {
+    if (event === "SIGNED_IN" && session?.user) {
+      setCurrentUser(session.user);
+      toast.success("Signed in successfully");
+      router.replace("/");
+      router.refresh();
+    }
+  });
+
+  return () => subscription.unsubscribe();
+}, [supabase, router]);
+
+
   return (
     <>
 
-      <div className="mx-auto mt-24 max-w-md px-4 text-white">
+      <div className="mx-auto w-screen max-h-screen mt-24 max-w-md px-4 text-white">
         <div className="relative overflow-hidden  rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur">
           <ShineBorder shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]} />
 
@@ -488,14 +484,25 @@ export default function AuthPage({ user }: { user: User | null }) {
               className="w-full rounded-xl border border-white/10 bg-[#0b1b18] px-4 py-3 text-sm outline-none focus:border-emerald-400"
             />
 
+          <div className="relative">
+
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
               className="w-full rounded-xl border border-white/10 bg-[#0b1b18] px-4 py-3 text-sm outline-none focus:border-emerald-400"
-            />
+              /> 
+              <button type="button" onClick={() => setShowPassword(!showPassword)} >
+              {showPassword ? (
+                <Eye size={16} className="absolute right-4 top-1/2 transform -translate-y-1/2 text-xs cursor-pointer" />
+              ) : (
+                <EyeOff size={16} className="absolute right-4 top-1/2 transform -translate-y-1/2 text-xs cursor-pointer" />
+              )}
+              </button>
+              </div>
+
 
             <button
               disabled={loading}

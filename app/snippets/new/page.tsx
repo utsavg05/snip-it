@@ -13,12 +13,12 @@ export default async function NewSnippetPage() {
   }
 
   return (
-    <main className="mx-auto max-w-3xl px-6 py-20 text-white">
+    <main className="mx-auto max-w-3xl mt-4 px-6 py-20 text-white">
       <h1 className="text-3xl font-semibold">
         Create a new snippet
       </h1>
       <p className="mt-2 text-slate-400">
-        Save reusable code snippets for later.
+        Save snippets for yourself or share them to help the community.
       </p>
 
       <div className="mt-10">

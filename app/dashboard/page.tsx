@@ -46,6 +46,7 @@ import {
   getMySnippets,
   getLikedSnippets,
 } from "@/drizzle/src/snippets/action";
+import { Gauge, Globe, Heart } from "lucide-react";
 
 export default async function DashboardPage() {
   const supabase = await createSupabaseServerClient();
@@ -82,21 +83,23 @@ export default async function DashboardPage() {
             Manage your snippets
           </p>
         </div>
-        
+
         {/* Right stats */}
         <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {/* Created — Yellow */}
-          <div className="rounded-xl border border-yellow-500/30 bg-yellow-500/15 p-3 hover:shadow-lg hover:shadow-sky-500/10">
+          <div className="rounded-xl border border-yellow-500/30 bg-yellow-500/15 p-4 hover:shadow-lg hover:shadow-sky-500/10">
             <p className="text-md font-medium text-slate-200">
               Snippets Created
             </p>
-
-            <p className="mt-2 text-3xl font-semibold text-white">
-              {createdCount}
-              <span className="text-base text-slate-300">
-                {" "} / {FREE_LIMIT}
-              </span>
-            </p>
+            <div className="flex items-center justify-between">
+              <p className="mt-2 text-3xl font-semibold text-white">
+                {createdCount}
+                <span className="text-base text-slate-300">
+                  {" "} / {FREE_LIMIT}
+                </span>
+              </p>
+              <Gauge className="h-15 w-15 font-semibold text-white" />
+            </div>
 
             <div className="mt-4 h-2 w-full rounded bg-black/20">
               <div
@@ -116,14 +119,17 @@ export default async function DashboardPage() {
           </div>
 
           {/* Saved — BlueSky */}
-          <div className="rounded-xl border border-sky-500/30 bg-sky-500/15 p-3 hover:shadow-lg hover:shadow-sky-500/10">
+          <div className="rounded-xl border border-sky-500/30 bg-sky-500/15 p-4 hover:shadow-lg hover:shadow-sky-500/10">
             <p className="text-md font-medium text-slate-200">
               Snippets Saved
             </p>
+            <div className="flex items-center justify-between">
 
-            <p className="mt-2 text-3xl font-semibold text-white">
-              {likedCount}
-            </p>
+              <p className="mt-2 text-3xl font-semibold text-white">
+                {likedCount}
+              </p>
+              <Heart className=" h-15 w-15 text-white font-semibold" />
+            </div>
 
             <p className="mt-4 text-xs text-slate-300">
               From the community
@@ -131,14 +137,17 @@ export default async function DashboardPage() {
           </div>
 
           {/* Public — Green */}
-          <div className="rounded-xl border border-green-500/30 bg-green-500/15 p-3 hover:shadow-lg hover:shadow-green-500/10">
+          <div className="rounded-xl border border-green-500/30 bg-green-500/15 p-4 hover:shadow-lg hover:shadow-green-500/10">
             <p className="text-md font-medium text-slate-200">
               Public Snippets
             </p>
+            <div className="flex items-center justify-between">
 
-            <p className="mt-2 text-3xl font-semibold text-white">
-              {publicCount}
-            </p>
+              <p className="mt-2 text-3xl font-semibold text-white">
+                {publicCount}
+              </p>
+              <Globe className=" h-15 w-15 text-white font-semibold " />
+            </div>
 
             <p className="mt-4 text-xs text-slate-300">
               Shared with the community

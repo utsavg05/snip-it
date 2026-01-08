@@ -284,10 +284,10 @@ export default async function ExampleSnippets() {
 
         {/* CTA */}
         <div className="mt-14 text-center">
-          <Link href={`${user ? "/explore" : "/auth"}`}>
+          <Link href="/explore">
           <Button
             size="lg"
-            className="rounded-none cursor-pointer bg-emerald-500 px-8 py-6 text-base font-semibold text-black hover:bg-emerald-400"
+            className="rounded-xl cursor-pointer bg-emerald-500 px-8 py-6 text-base font-semibold text-black hover:bg-emerald-400"
           >
             Explore all snippets
           </Button>

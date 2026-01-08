@@ -5,6 +5,8 @@ import {
     DialogContent,
     DialogHeader,
     DialogTitle,
+    DialogClose,
+    DialogTrigger
 } from "@/components/ui/dialog";
 import { Copy, Heart, Globe, Lock } from "lucide-react";
 import Image from "next/image";
@@ -130,6 +132,7 @@ export default function SnippetModal({
         docker: "dockerfile",
         html: "html",
         css: "css",
+        linux: "bash",
     };
 
     const resolvedLanguage = SHIKI_LANG_MAP[language.toLowerCase()] ?? "plaintext";

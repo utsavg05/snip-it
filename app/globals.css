@@ -2,8 +2,34 @@
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
+/* Hide scrollbar but allow scroll */
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE / Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Shiki reset */
+.shiki {
+  background: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: unset !important; /* key fix */
+}
+
+/* Prevent horizontal overflow */
+.shiki code {
+  display: block;
+  white-space: pre-wrap !important;
+  word-break: break-word;
+}
+
+
 
 @theme inline {
+
   /* html {
   scroll-behavior: smooth;
 } */
