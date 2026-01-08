@@ -559,7 +559,7 @@ export default function AuthPage({ user }: { user: User | null }) {
         </div>
 
         {/* Session panel (optional / debug) */}
-        {currentUser && (
+        {/* {currentUser && (
           <div className="mt-5 rounded-[28px] border border-white/10 bg-white/5 p-7 text-slate-200 backdrop-blur">
             <h3 className="text-lg font-semibold">Logged in as:</h3>
             <p className="mt-1 text-sm text-slate-300">
@@ -572,7 +572,7 @@ export default function AuthPage({ user }: { user: User | null }) {
               Logout
             </button>
           </div>
-        )}
+        )} */}
       </div>
     </>
   );
