@@ -1,65 +1,30 @@
 "use client";
-
-import {
-    Dialog,
-    DialogContent,
-    DialogHeader,
-    DialogTitle,
-    DialogClose,
-    DialogTrigger
-} from "@/components/ui/dialog";
+import {Dialog, DialogContent, DialogHeader, DialogTitle,} from "@/components/ui/dialog";
 import { Copy, Heart, Globe, Lock } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { likeSnippet, unlikeSnippet } from "@/drizzle/src/snippets/likes";
 import CodeBlock from "./CodeBlock";
 
-// type SnippetModalProps = {
-//   open: boolean;
-//   onOpenChange: (open: boolean) => void;
-
-//   id: string;
-//   title: string;
-//   code: string;
-//   language: string;
-//   isPublic: boolean;
-//   createdAt: string;
-//   tags?: string[];
-//   likesCount: number;
-//   isLiked: boolean;
-
-//   author: {
-//     username: string | null;
-//     avatar?: string | null;
-//   };
-// };
-
 type SnippetModalProps = {
     open: boolean;
     onOpenChange: (open: boolean) => void;
-
     id: string;
     title: string;
     code: string;
     language: string;
     isPublic: boolean;
     createdAt: string;
-
     tags?: string[];
-
     likesCount: number;
     isLiked: boolean;
-
     author: {
         username: string | null;
         avatar?: string | null;
     };
-
     onCopy: () => void;
-    onLikeToggle: (e?: React.MouseEvent) => void;
+    onLikeToggle: () => void;
 };
-
-
 
 export default function SnippetModal({
     open,

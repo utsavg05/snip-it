@@ -8,6 +8,7 @@ import Footer from "./components/landing/Footer";
 import { Button } from "@/components/ui/button";
 import { RainbowButton } from "@/components/ui/rainbow-button";
 import Link from "next/link";
+import Pricing from "./pricing/page";
 
 
 export default function Home() {
@@ -18,6 +19,7 @@ export default function Home() {
     {/* <SocialProof /> */}
     <HowItWorks />
     <ExampleSnippets />
+    {/* <Pricing /> */}
     <Testimonials />
     <Footer />
     <Link href="/snippets/new">

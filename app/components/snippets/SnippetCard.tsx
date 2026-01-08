@@ -194,7 +194,6 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
-import { Button } from "@/components/ui/button";
 import { toast } from "react-toastify";
 
 type SnippetCardProps = {
@@ -239,15 +238,15 @@ export default function SnippetCard({
     setCount(likesCount);
   }, [isLiked, likesCount]);
 
-  async function handleCopy(e: React.MouseEvent) {
-    e.stopPropagation(); // 🛑 prevent modal open
+  async function handleCopy() {
+    // e.stopPropagation(); 
     await navigator.clipboard.writeText(code);
     setCopied(true);
     setTimeout(() => setCopied(false), 1500);
   }
 
-  async function handleLikeToggle(e: React.MouseEvent) {
-    e.stopPropagation(); // 🛑 prevent modal open
+  async function handleLikeToggle() {
+    // e.stopPropagation(); 
     if (isPending) return;
 
     startTransition(async () => {
@@ -313,7 +312,10 @@ export default function SnippetCard({
 
         {/* Like */}
         <button
-          onClick={handleLikeToggle}
+          onClick={(e) => {
+            e.stopPropagation();
+            handleLikeToggle();
+          }}
           disabled={isPending}
           className={`flex items-center gap-1 text-sm ${liked
             ? "text-red-500"
@@ -380,7 +382,10 @@ export default function SnippetCard({
         {/* Actions */}
         <div className="flex items-center gap-2">
           <button
-            onClick={handleCopy}
+            onClick={(e) => {
+              e.stopPropagation();
+              handleCopy();
+            }}
             className="flex h-7 w-7 items-center justify-center rounded-md text-slate-400 hover:bg-white/5 hover:text-white"
           >
             <Copy size={15} />

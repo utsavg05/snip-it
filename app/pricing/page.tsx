@@ -10,7 +10,7 @@ export default async function Pricing() {
   return (
     <section
       id="pricing"
-      className="relative border-t border-white/5 bg-[#0b0f0e]"
+      className="relative border-white/5 bg-[#0b0f0e]"
     >
       <div className="mx-auto max-w-6xl px-6 py-24">
         {/* Heading */}
