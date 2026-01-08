@@ -179,7 +179,7 @@
 //   const [currentUser, setCurrentUser] = useState<User | null>(user);
 
 //   const router = useRouter();
-  
+
 //   useEffect(() => {
 //     async function loadSession() {
 //       const { data } = await supabase.auth.getSession();
@@ -352,18 +352,18 @@ export default function AuthPage({ user }: { user: User | null }) {
   const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
-  const url = new URL(window.location.href);
+    const url = new URL(window.location.href);
 
-  if (url.searchParams.get("auth") === "success") {
-    supabase.auth.getSession().then(({ data }) => {
-      if (data.session?.user) {
-        setCurrentUser(data.session.user);
-        toast.success("Signed in successfully");
-        router.replace("/");
-      }
-    });
-  }
-}, [supabase, router]);
+    if (url.searchParams.get("auth") === "success") {
+      supabase.auth.getSession().then(({ data }) => {
+        if (data.session?.user) {
+          setCurrentUser(data.session.user);
+          toast.success("Signed in successfully");
+          router.replace("/");
+        }
+      });
+    }
+  }, [supabase, router]);
 
 
   async function handleEmailAuth(e: React.FormEvent<HTMLFormElement>) {
@@ -410,7 +410,7 @@ export default function AuthPage({ user }: { user: User | null }) {
         redirectTo: `${window.location.origin}/auth/callback`,
       },
     });
-    toast.success("Signed in successfully");
+    // toast.success("Signed in successfully");
   }
 
   async function handleGoogleLogin() {
@@ -420,7 +420,7 @@ export default function AuthPage({ user }: { user: User | null }) {
         redirectTo: `${window.location.origin}/auth/callback`,
       },
     });
-    toast.success("Signed in successfully");
+    // toast.success("Signed in successfully");
   }
 
   async function handleLogout() {
@@ -429,26 +429,28 @@ export default function AuthPage({ user }: { user: User | null }) {
   }
 
   useEffect(() => {
-  const {
-    data: { subscription },
-  } = supabase.auth.onAuthStateChange((event, session) => {
-    if (event === "SIGNED_IN" && session?.user) {
-      setCurrentUser(session.user);
-      toast.success("Signed in successfully");
-      router.replace("/");
-      router.refresh();
-    }
-  });
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === "SIGNED_IN" && session?.user) {
+        setCurrentUser(session.user);
+        toast.success("Signed in successfully");
+        router.replace("/");
+        router.refresh();
+      }
+    });
 
-  return () => subscription.unsubscribe();
-}, [supabase, router]);
+    return () => subscription.unsubscribe();
+  }, [supabase, router]);
 
 
   return (
     <>
 
-      <div className="mx-auto w-screen max-h-screen mt-24 max-w-md px-4 text-white">
-        <div className="relative overflow-hidden  rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur">
+      <div className="flex min-h-screen items-center justify-center px-4 text-white">
+
+        <div className="relative w-full max-w-lg overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-10 backdrop-blur">
+
           <ShineBorder shineColor={["#A07CFE", "#FE8FB5", "#FFBE7B"]} />
 
           {/* Header */}
@@ -461,23 +463,10 @@ export default function AuthPage({ user }: { user: User | null }) {
             </p>
           </div>
 
-          {/* GitHub OAuth */}
-          <button
-            onClick={handleGithubLogin}
-            className="mb-4 flex w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 py-2.5 text-sm font-semibold hover:bg-white/10"
-          >
-            <Image
-              src="/github-icon.svg"
-              alt="GitHub"
-              width={20}
-              height={20}
-              className="invert"
-            />
-            Continue with GitHub
-          </button>
+          {/* Google OAuth */}
           <button
             onClick={handleGoogleLogin}
-            className="mb-4 flex w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 py-2.5 text-sm font-semibold hover:bg-white/10"
+            className="mb-3 flex w-full items-center justify-center gap-2 rounded-xl border border-white/10 bg-white text-black py-2.5 text-sm font-semibold hover:bg-white/90"
           >
             <Image
               src="/google2.png"
@@ -487,6 +476,21 @@ export default function AuthPage({ user }: { user: User | null }) {
               className="invert"
             />
             Continue with Google
+          </button>
+
+          {/* GitHub OAuth */}
+          <button
+            onClick={handleGithubLogin}
+            className="mb-4 flex w-full items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 py-2.5 text-sm font-semibold hover:bg-white/10"
+          >
+            <Image
+              src="/github-icon.svg"
+              alt="GitHub"
+              width={20}
+              height={20}
+              className="invert"
+            />
+            Continue with GitHub
           </button>
 
           {/* Divider */}
@@ -504,32 +508,37 @@ export default function AuthPage({ user }: { user: User | null }) {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full rounded-xl border border-white/10 bg-[#0b1b18] px-4 py-3 text-sm outline-none focus:border-emerald-400"
+              className="w-full rounded-xl border border-white/10 bg-black/40 px-4 py-3 text-sm text-white placeholder:text-slate-400 outline-none transition focus:border-emerald-400 focus:bg-black/60"
             />
 
-          <div className="relative">
 
-            <input
-              type={showPassword ? "text" : "password"}
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              className="w-full rounded-xl border border-white/10 bg-[#0b1b18] px-4 py-3 text-sm outline-none focus:border-emerald-400"
-              /> 
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                className="w-full rounded-xl border border-white/10 bg-black/40 px-4 py-3 text-sm text-white placeholder:text-slate-400 outline-none transition focus:border-emerald-400 focus:bg-black/60"
+              />
+
               <button type="button" onClick={() => setShowPassword(!showPassword)} >
-              {showPassword ? (
-                <Eye size={16} className="absolute right-4 top-1/2 transform -translate-y-1/2 text-xs cursor-pointer" />
-              ) : (
-                <EyeOff size={16} className="absolute right-4 top-1/2 transform -translate-y-1/2 text-xs cursor-pointer" />
-              )}
+                {showPassword ? (
+                  <Eye
+                    size={16}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer text-slate-400 hover:text-white"
+                  />
+
+                ) : (
+                  <EyeOff size={16} className="absolute right-4 top-1/2 transform -translate-y-1/2 text-xs cursor-pointer" />
+                )}
               </button>
-              </div>
+            </div>
 
 
             <button
               disabled={loading}
-              className="w-full rounded-full bg-emerald-500 py-3 text-sm font-semibold text-black hover:bg-emerald-400 disabled:opacity-60"
+              className="w-full rounded-xl bg-emerald-500 py-3 text-sm font-semibold text-black hover:bg-emerald-400 disabled:opacity-60"
             >
               {mode === "signup" ? "Create account" : "Sign in"}
             </button>
