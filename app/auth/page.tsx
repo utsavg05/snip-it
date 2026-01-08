@@ -413,6 +413,16 @@ export default function AuthPage({ user }: { user: User | null }) {
     toast.success("Signed in successfully");
   }
 
+  async function handleGoogleLogin() {
+    await supabase.auth.signInWithOAuth({
+      provider: "google",
+      options: {
+        redirectTo: `${window.location.origin}/auth/callback`,
+      },
+    });
+    toast.success("Signed in successfully");
+  }
+
   async function handleLogout() {
     await supabase.auth.signOut();
     setCurrentUser(null);
@@ -464,6 +474,19 @@ export default function AuthPage({ user }: { user: User | null }) {
               className="invert"
             />
             Continue with GitHub
+          </button>
+          <button
+            onClick={handleGoogleLogin}
+            className="mb-4 flex w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 py-2.5 text-sm font-semibold hover:bg-white/10"
+          >
+            <Image
+              src="/google2.png"
+              alt="GitHub"
+              width={20}
+              height={20}
+              className="invert"
+            />
+            Continue with Google
           </button>
 
           {/* Divider */}
