@@ -14,10 +14,10 @@ export const reviews = [
     img: "https://i.pravatar.cc/100?img=2",
   },
   {
-    name: "Rahul Sharma",
-    username: "@rahuljs",
-    body: "I love how clean and distraction-free SnipHub feels. Copying reusable code has never been this smooth.",
-    img: "https://i.pravatar.cc/100?img=3",
+    name: "Victor Tenold",
+    username: "@victortenold",
+    body: "Nice. A focused place for reusable snippets is super underrated.",
+    img: "https://pbs.twimg.com/profile_images/1990136947579277313/7F_KQwfg_400x400.jpg",
   },
   {
     name: "Emily Chen",
