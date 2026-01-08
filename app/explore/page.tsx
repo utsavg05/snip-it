@@ -172,7 +172,7 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
   // const query = searchParams?.q ?? "";
   // const page = Math.max(1, Number(searchParams?.page ?? 1));
   const params = await searchParams;
-  const page = Math.max(1, Number(params.page ?? 1));
+  const page = Math.max(1, Number(params?.page ?? 1));
 
   const { items, totalPages } =
     await getExploreSnippetsPaginated({
