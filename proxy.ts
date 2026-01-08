@@ -1,10 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { createSupabaseServerClient } from "@/lib/supabase/server-client";
 
-/**
- * Next.js proxy (formerly middleware)
- * Responsible for route protection & auth redirects
- */
 export async function proxy(request: NextRequest) {
   const response = NextResponse.next({
     request: {
