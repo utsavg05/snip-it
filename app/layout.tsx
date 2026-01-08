@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/landing/Navbar";
+import { ToastContainer } from "react-toastify";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,10 +27,23 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-gradient-to-b from-[#0b0f0e] via-[#0d1412] to-[#0b0f0e] text-white antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-gradient-to-b from-[#020202] via-[#090b0a] to-[#010101] text-white antialiased`}
       >
         <Navbar />
         {children}
+        <ToastContainer
+        position="bottom-right"
+        autoClose={2500}
+        hideProgressBar
+        closeOnClick
+        pauseOnHover
+        theme="dark"
+        toastStyle={{
+          background: "#0d1117",
+          border: "1px solid rgba(255,255,255,0.1)",
+          color: "#e5e7eb",
+        }}
+      />
       </body>
     </html>
   );

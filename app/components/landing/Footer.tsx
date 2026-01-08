@@ -90,7 +90,7 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3 text-sm text-slate-300">
               <li>
-                <Link href="#" className="hover:text-white">
+                <Link href="/privacy" className="hover:text-white">
                   Privacy Policy
                 </Link>
               </li>
