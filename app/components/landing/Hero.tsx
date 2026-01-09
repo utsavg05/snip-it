@@ -41,7 +41,19 @@ export default function Hero() {
         className="pointer-events-none absolute left-1/2 top-[-120px] h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-emerald-500/10 blur-[120px]"
       />
 
-      <div className="mx-auto max-w-6xl px-6 pb-32 pt-28 text-center">
+      <div className="mx-auto max-w-6xl px-6 pb-32 md:pt-28 pt-13 text-center">
+        <div className="flex items-center gap-2 justify-center mb-8 block md:hidden">
+
+        <div className="flex items-center gap-3 px-2 py-1 w-fit rounded-full
+                          border border-white/15
+                          bg-white backdrop-blur-md
+                          shadow-[0_8px_30px_rgba(0,0,0,0.35)]
+                          transition hover:bg-white/80 text-black font-medium text-xs"
+                          >
+            <span className="h-2 w-2 ml-1 rounded-full bg-emerald-400 animate-caret-blink duration-300" />
+            Best experienced on larger screens
+        </div>
+          </div>
         {/* trust badge */}
         <div className="mb-6 flex justify-center">
           {/* <Badge
@@ -63,10 +75,10 @@ export default function Hero() {
           </div> */}
 
           <div className="flex items-center gap-3 px-1.5 py-1 pr-3 w-fit rounded-full
-  border border-white/15
-  bg-white/5 backdrop-blur-md
-  shadow-[0_8px_30px_rgba(0,0,0,0.35)]
-  transition hover:bg-white/10"
+                          border border-white/15
+                          bg-white/5 backdrop-blur-md
+                          shadow-[0_8px_30px_rgba(0,0,0,0.35)]
+                          transition hover:bg-white/10"
           >
             <div className="flex -space-x-2">
               <img
