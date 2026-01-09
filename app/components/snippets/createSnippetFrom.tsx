@@ -114,7 +114,7 @@ export default function CreateSnippetForm() {
           required
           rows={8}
           placeholder="// paste your code here"
-          className="mt-1.5 w-full resize-none rounded-lg border border-white/10 bg-[#010409] px-3.5 py-2.5 font-mono text-xs text-white outline-none focus:border-white/30"
+          className="mt-1.5 w-full h-[200px] resize-none rounded-lg border border-white/10 bg-[#010409] px-3.5 py-2.5 font-mono text-xs text-white outline-none focus:border-white/30"
         />
       </div>
 
