@@ -47,6 +47,8 @@ import {
   getLikedSnippets,
 } from "@/drizzle/src/snippets/action";
 import { Gauge, Globe, Heart } from "lucide-react";
+import WorldIcon from "@/components/ui/world-icon";
+import GaugeIcon from "@/components/ui/gauge-icon";
 
 export default async function DashboardPage() {
   const supabase = await createSupabaseServerClient();
@@ -98,7 +100,8 @@ export default async function DashboardPage() {
                   {" "} / {FREE_LIMIT}
                 </span>
               </p>
-              <Gauge className="h-15 w-15 font-semibold text-white" />
+              {/* <Gauge className="h-15 w-15 font-semibold text-white" /> */}
+              <GaugeIcon className="h-15 w-15"/>
             </div>
 
             <div className="mt-4 h-2 w-full rounded bg-black/20">
@@ -146,7 +149,8 @@ export default async function DashboardPage() {
               <p className="mt-2 text-3xl font-semibold text-white">
                 {publicCount}
               </p>
-              <Globe className=" h-15 w-15 text-white font-semibold " />
+              {/* <Globe className=" h-15 w-15 text-white font-semibold " /> */}
+              <WorldIcon className="h-15 w-15"/>
             </div>
 
             <p className="mt-4 text-xs text-slate-300">
