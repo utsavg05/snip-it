@@ -41,7 +41,7 @@ export default function Hero() {
         className="pointer-events-none absolute left-1/2 top-[-120px] h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-emerald-500/10 blur-[120px]"
       />
 
-      <div className="mx-auto max-w-6xl px-6 pb-32 md:pt-28 pt-5 text-center">
+      <div className="mx-auto max-w-6xl px-6 pb-24 md:pb-32 md:pt-28 pt-5 text-center">
         <div className="flex items-center gap-2 justify-center mb-8 block md:hidden">
 
         {/* <div className="flex items-center gap-3 px-2 py-1 w-fit rounded-full
@@ -106,7 +106,7 @@ export default function Hero() {
         </h1>
 
         {/* subheading */}
-        <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-neutral-400 sm:text-lg">
+        <p className="mx-auto mt-6 max-w-2xl text-base leading-5 md:leading-relaxed text-neutral-400 sm:text-lg">
           Save, tag, and reuse your best code snippets.
           <br />
           Built for developers who hate digging through old repos and notes.

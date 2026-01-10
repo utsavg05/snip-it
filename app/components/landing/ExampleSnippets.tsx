@@ -190,13 +190,13 @@ export const pool = new Pool({
   },
 ];
 
-export default async function ExampleSnippets() {
+export default function ExampleSnippets() {
 
-  const user = await getAuthUser();
+  // const user = await getAuthUser();
 
   return (
     <section
-      id="examples"
+      id="demo"
       className="w-full relative border-white/5 bg-[#0b0f0e]"
     >
       <div className="mx-auto max-w-7xl px-6 py-20">
@@ -205,44 +205,44 @@ export default async function ExampleSnippets() {
           <p className="mb-2 text-xs font-semibold uppercase tracking-[0.3em] text-emerald-400">
             See it in action
           </p>
-          <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
+          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-5xl">
             Real snippets developers actually use
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-neutral-400">
+          <p className="mx-auto mt-4 max-w-2xl text-md md:text-lg leading-5.5 md:leading-relaxed text-neutral-400">
             From frontend utilities to backend helpers — save code you’ll
             reuse across projects.
           </p>
         </div>
 
         {/* Snippet Grid */}
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 sm:gap-5 md:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {snippets.map((snippet, idx) => (
             <div
               key={idx}
-              className="relative rounded-2xl border border-white/10 bg-white/5 p-6 transition hover:-translate-y-1 hover:border-emerald-400/30 hover:bg-white/[0.08]"
+              className="relative rounded-xl sm:rounded-2xl border border-white/10 bg-white/5 p-4 sm:p-5 md:p-6 transition hover:-translate-y-1 hover:border-emerald-400/30 hover:bg-white/[0.08]"
             >
               {/* Meta */}
-              <div className="mb-3 flex items-center justify-between text-xs">
-                <span className="rounded-full bg-emerald-500/15 px-3 py-1 font-semibold text-emerald-400">
+              <div className="mb-3 flex items-center justify-between text-xs sm:text-sm">
+                <span className="rounded-full bg-emerald-500/15 px-2.5 sm:px-3 py-1 font-semibold text-emerald-400">
                   {snippet.language}
                 </span>
-                <span className="text-slate-400">@{snippet.author}</span>
+                <span className="text-slate-400 truncate ml-2">@{snippet.author}</span>
               </div>
 
               {/* Title */}
-              <h3 className="mb-3 text-lg font-semibold text-white">
+              <h3 className="mb-3 text-base sm:text-lg font-semibold text-white line-clamp-2">
                 {snippet.title}
               </h3>
 
               {/* Code */}
-              <pre className="max-h-[160px] overflow-hidden rounded-xl bg-[#050807] p-4 text-sm text-slate-200">
+              <pre className="max-h-[140px] sm:max-h-[160px] overflow-hidden rounded-lg sm:rounded-xl bg-[#050807] p-3 sm:p-4 text-xs sm:text-sm text-slate-200">
                 <code className="font-mono leading-relaxed">
                   {snippet.code}
                 </code>
               </pre>
 
               {/* Action */}
-              <button className="mt-4 w-full rounded-full border border-white/10 py-2 text-sm font-semibold text-white transition hover:bg-white/10">
+              <button className="mt-3 sm:mt-4 w-full rounded-full border border-white/10 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold text-white transition hover:bg-white/10 active:scale-95">
                 Copy snippet
               </button>
             </div>
@@ -250,32 +250,32 @@ export default async function ExampleSnippets() {
         </div>
 
         {/* Value Highlights */}
-        <div className="mt-16 grid gap-6 md:grid-cols-3">
-          <div className="rounded-xl border border-white/10 bg-white/5 p-6">
-            <h4 className="mb-2 font-semibold text-white">
+        <div className="mt-12 sm:mt-14 md:mt-16 grid gap-4 sm:gap-5 md:gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+          <div className="rounded-lg sm:rounded-xl border border-white/10 bg-white/5 p-5 sm:p-6">
+            <h4 className="mb-2 text-base sm:text-lg font-semibold text-white">
               Built for speed
             </h4>
-            <p className="text-sm text-neutral-400">
+            <p className="text-sm sm:text-base text-neutral-400 leading-relaxed">
               Save snippets in seconds and reuse them instantly
               without context switching.
             </p>
           </div>
 
-          <div className="rounded-xl border border-white/10 bg-white/5 p-6">
-            <h4 className="mb-2 font-semibold text-white">
+          <div className="rounded-lg sm:rounded-xl border border-white/10 bg-white/5 p-5 sm:p-6">
+            <h4 className="mb-2 text-base sm:text-lg font-semibold text-white">
               Language-agnostic
             </h4>
-            <p className="text-sm text-neutral-400">
+            <p className="text-sm sm:text-base text-neutral-400 leading-relaxed">
               JavaScript, TypeScript, SQL, CSS, backend or frontend —
               everything lives in one place.
             </p>
           </div>
 
-          <div className="rounded-xl border border-white/10 bg-white/5 p-6">
-            <h4 className="mb-2 font-semibold text-white">
+          <div className="rounded-lg sm:rounded-xl border border-white/10 bg-white/5 p-5 sm:p-6">
+            <h4 className="mb-2 text-base sm:text-lg font-semibold text-white">
               Reuse Rewrite
             </h4>
-            <p className="text-sm text-neutral-400">
+            <p className="text-sm sm:text-base text-neutral-400 leading-relaxed">
               Stop rewriting the same utilities across projects.
               Copy, paste, ship.
             </p>
@@ -283,14 +283,14 @@ export default async function ExampleSnippets() {
         </div>
 
         {/* CTA */}
-        <div className="mt-14 text-center">
+        <div className="mt-10 sm:mt-12 md:mt-14 text-center">
           <Link href="/explore">
-          <Button
-            size="lg"
-            className="rounded-xl cursor-pointer bg-emerald-500 px-8 py-6 text-base font-semibold text-[#0b0f0e] hover:bg-emerald-400"
-          >
-            Explore all snippets
-          </Button>
+            <Button
+              size="lg"
+              className="rounded-xl cursor-pointer bg-emerald-500 px-6 sm:px-8 py-5 sm:py-6 text-sm sm:text-base font-semibold text-[#0b0f0e] hover:bg-emerald-400 active:scale-95 transition-transform w-full sm:w-auto"
+            >
+              Explore all snippets
+            </Button>
           </Link>
         </div>
       </div>

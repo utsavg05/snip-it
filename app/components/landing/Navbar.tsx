@@ -186,7 +186,7 @@ export default async function Navbar() {
           <Link href="/pricing" className="font-semibold hover:text-emerald-400">
             Pricing
           </Link>
-          <Link href="#examples" className="font-semibold hover:text-emerald-400">
+          <Link href="#demo" className="font-semibold hover:text-emerald-400">
             Demo
           </Link>
 

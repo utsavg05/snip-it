@@ -66,7 +66,7 @@ export default function MobileNavClient({
         aria-label={open ? "Close menu" : "Open menu"}
         className="rounded-md p-2 text-slate-300 hover:bg-white/5 hover:text-white transition-colors"
       >
-        {open ? <X size={24} /> : <AlignCenterIcon className="text-neutral-400" />}
+        {open ? <X className="text-neutral-200" size={24} /> : <AlignCenterIcon className="text-neutral-200" />}
       </button>
 
       <MobileDrawer

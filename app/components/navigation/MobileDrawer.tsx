@@ -278,7 +278,7 @@ export default function MobileDrawer({
       <div className="fixed left-0 right-0 top-[60px] z-50 animate-in slide-in-from-top-2 duration-500 ">
         <div className="border-b border-white/10 bg-[#0b0f0e] shadow-2xl">
           {/* Nav items */}
-          <nav className="flex flex-col gap-3 px-6 py-4">
+          <nav className="flex flex-col gap-3 px-6 py-4 text-md">
             <Link 
               onClick={onClose} 
               href="/" 
@@ -298,11 +298,11 @@ export default function MobileDrawer({
               href="/pricing" 
               className="drawer-link w-full hover:text-[#22C55E] text-gray-300 cursor-pointer font-light transition-all duration-300 translate-x-0 opacity-100 delay-150"
             >
-              Premium
+              Pricing
             </Link>
             <Link 
               onClick={onClose} 
-              href="#examples" 
+              href="#demo" 
               className="drawer-link w-full hover:text-[#22C55E] text-gray-300 cursor-pointer font-light transition-all duration-300 translate-x-0 opacity-100 delay-150"
             >
               Demo
