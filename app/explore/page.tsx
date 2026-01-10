@@ -155,10 +155,51 @@
 
 
 
+// import ExploreSidebar from "./components/ExploreSidebar";
+// import ExploreHeader from "./components/ExploreHeader";
+// import ExploreResults from "./components/ExploreResults";
+// import { getExploreSnippetsPaginated } from "@/drizzle/src/snippets/action";
+
+// type ExplorePageProps = {
+//   searchParams?: {
+//     page?: string;
+//   };
+// };
+
+// export default async function ExplorePage({ searchParams }: ExplorePageProps) {
+//   const params = await searchParams;
+//   const page = Math.max(1, Number(params?.page ?? 1));
+
+//   const { items, totalPages } =
+//     await getExploreSnippetsPaginated({
+//       page,
+//       limit: 12,
+//     });
+    
+
+//   return (
+//     <main className="mx-auto max-w-7xl px-6 pt-24 pb-12 text-white">
+//       <div className="flex gap-6">
+//         {/* Sidebar */}
+//         <aside className="sticky top-24 h-[calc(100vh-96px)] w-44 shrink-0 border-r border-white/10 pr-3">
+//           <ExploreSidebar  />
+//         </aside>
+
+//         {/* Content */}
+//         <section className="flex-1 min-w-0">
+//           <ExploreHeader  />
+//           <ExploreResults page={page} />
+//         </section>
+//       </div>
+//     </main>
+//   );
+// }
+
+
+
 import ExploreSidebar from "./components/ExploreSidebar";
 import ExploreHeader from "./components/ExploreHeader";
 import ExploreResults from "./components/ExploreResults";
-import ExplorePagination from "./pagination";
 import { getExploreSnippetsPaginated } from "@/drizzle/src/snippets/action";
 
 type ExplorePageProps = {
@@ -168,30 +209,25 @@ type ExplorePageProps = {
 };
 
 export default async function ExplorePage({ searchParams }: ExplorePageProps) {
-  // const lang = searchParams?.lang ?? null;
-  // const query = searchParams?.q ?? "";
-  // const page = Math.max(1, Number(searchParams?.page ?? 1));
   const params = await searchParams;
   const page = Math.max(1, Number(params?.page ?? 1));
 
-  const { items, totalPages } =
-    await getExploreSnippetsPaginated({
-      page,
-      limit: 12,
-    });
-    
+  const { items, totalPages } = await getExploreSnippetsPaginated({
+    page,
+    limit: 12,
+  });
 
   return (
-    <main className="mx-auto max-w-7xl px-6 pt-24 pb-12 text-white">
-      <div className="flex gap-6">
-        {/* Sidebar */}
-        <aside className="sticky top-24 h-[calc(100vh-96px)] w-44 shrink-0 border-r border-white/10 pr-3">
-          <ExploreSidebar  />
+    <main className="mx-auto max-w-7xl px-4 sm:px-6 pt-20 sm:pt-24 pb-12 text-white">
+      <div className="flex gap-4 lg:gap-6">
+        {/* Sidebar - Hidden on mobile/tablet */}
+        <aside className="sticky top-24 h-[calc(100vh-96px)] w-44 shrink-0 border-r border-white/10 pr-4 hidden lg:block">
+          <ExploreSidebar />
         </aside>
 
         {/* Content */}
-        <section className="flex-1 min-w-0">
-          <ExploreHeader  />
+        <section className="flex-1 min-w-0 w-full">
+          <ExploreHeader />
           <ExploreResults page={page} />
         </section>
       </div>
