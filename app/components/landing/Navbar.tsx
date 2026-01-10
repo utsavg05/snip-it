@@ -176,7 +176,7 @@ export default async function Navbar() {
         </Link>
 
         {/* Desktop links */}
-        <div className="hidden items-center gap-10 text-sm text-slate-300 md:flex">
+        <div className="hidden items-center gap-10 text-sm text-neutral-300 md:flex">
           <Link href="/" className="font-semibold hover:text-emerald-400">
             Home
           </Link>

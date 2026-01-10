@@ -208,7 +208,7 @@ export default async function ExampleSnippets() {
           <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
             Real snippets developers actually use
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-400">
+          <p className="mx-auto mt-4 max-w-2xl text-lg text-neutral-400">
             From frontend utilities to backend helpers — save code you’ll
             reuse across projects.
           </p>
@@ -255,7 +255,7 @@ export default async function ExampleSnippets() {
             <h4 className="mb-2 font-semibold text-white">
               Built for speed
             </h4>
-            <p className="text-sm text-slate-400">
+            <p className="text-sm text-neutral-400">
               Save snippets in seconds and reuse them instantly
               without context switching.
             </p>
@@ -265,7 +265,7 @@ export default async function ExampleSnippets() {
             <h4 className="mb-2 font-semibold text-white">
               Language-agnostic
             </h4>
-            <p className="text-sm text-slate-400">
+            <p className="text-sm text-neutral-400">
               JavaScript, TypeScript, SQL, CSS, backend or frontend —
               everything lives in one place.
             </p>
@@ -275,7 +275,7 @@ export default async function ExampleSnippets() {
             <h4 className="mb-2 font-semibold text-white">
               Reuse Rewrite
             </h4>
-            <p className="text-sm text-slate-400">
+            <p className="text-sm text-neutral-400">
               Stop rewriting the same utilities across projects.
               Copy, paste, ship.
             </p>

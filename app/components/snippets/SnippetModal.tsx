@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { likeSnippet, unlikeSnippet } from "@/drizzle/src/snippets/likes";
 import CodeBlock from "./CodeBlock";
+import CopyIcon from "@/components/ui/copy-icon";
 
 type SnippetModalProps = {
     open: boolean;
@@ -187,7 +188,8 @@ export default function SnippetModal({
                             onClick={handleCopy}
                             className="flex items-center gap-1 text-sm text-slate-400 hover:text-white"
                         >
-                            <Copy size={16} />
+                            {/* <Copy size={16} /> */}
+                            <CopyIcon size={16}/>
                             {copied ? "Copied" : "Copy"}
                         </button>
                     </div>

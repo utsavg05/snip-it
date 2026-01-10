@@ -81,7 +81,7 @@ export default async function DashboardPage() {
           <h1 className="text-3xl font-semibold md:text-4xl">
             Dashboard
           </h1>
-          <p className="mt-2 text-slate-400">
+          <p className="mt-2 text-neutral-400">
             Manage your snippets
           </p>
         </div>

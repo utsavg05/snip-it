@@ -5,6 +5,7 @@ import Image from "next/image";
 import { getSupabaseBrowserClient } from "@/lib/supabase/browser-client";
 import { Button } from "@/components/ui/button";
 import { LogOut } from "lucide-react";
+import LogoutIcon from "@/components/ui/logout-icon";
 
 export default function UserMenu({ user }: { user: any }) {
   const [open, setOpen] = useState(false);

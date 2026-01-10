@@ -12,12 +12,12 @@ export default function Footer() {
             <h3 className="text-lg font-bold text-white">
               SnipHUB
             </h3>
-            <p className="mt-4 text-sm leading-relaxed text-slate-300">
+            <p className="mt-4 text-sm leading-relaxed text-neutral-300">
               Save, organize, and reuse your best code snippets without
               losing context.
             </p>
 
-            <div className="mt-6 flex items-center gap-4 text-slate-300">
+            <div className="mt-6 flex items-center gap-4 text-neutral-300">
               <Link href="https://x.com/0xdevug" target="_blank" rel="noopener noreferrer" className="hover:text-white">
                 <Twitter size={18} />
               </Link>
@@ -35,7 +35,7 @@ export default function Footer() {
             <h4 className="mb-4 text-sm font-semibold uppercase tracking-wide text-white">
               Product
             </h4>
-            <ul className="space-y-3 text-sm text-slate-300">
+            <ul className="space-y-3 text-sm text-neutral-400">
               <li>
                 <Link href="/" className="hover:text-white">
                   Overview
@@ -64,7 +64,7 @@ export default function Footer() {
             <h4 className="mb-4 text-sm font-semibold uppercase tracking-wide text-white">
               Company
             </h4>
-            <ul className="space-y-3 text-sm text-slate-300">
+            <ul className="space-y-3 text-sm text-neutral-400">
               <li>
                 <Link href="mailto:utsav.gp1204@gmail.com" target="_blank" rel="noopener noreferrer" className="hover:text-white">
                   Contact
@@ -88,14 +88,14 @@ export default function Footer() {
             <h4 className="mb-4 text-sm font-semibold uppercase tracking-wide text-white">
               Resources
             </h4>
-            <ul className="space-y-3 text-sm text-slate-300">
+            <ul className="space-y-3 text-sm text-neutral-400">
               <li>
                 <Link href="/privacy" className="hover:text-white">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <span className="cursor-not-allowed text-slate-500">
+                <span className="cursor-not-allowed text-neutral-600">
                   Careers (soon)
                 </span>
               </li>
@@ -104,9 +104,9 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-8 flex flex-col items-center justify-between gap-4 border-white/5 pt-8 text-sm text-slate-300 sm:flex-row">
-          <p className="text-slate-400 tracking-[0.1em]">
-            Built for developers, by <Link href="https://x.com/0xdevug" target="_blank" rel="noopener noreferrer" className=" border-b-1 border-slate-400 hover:border-white hover:text-white">Utsav</Link>.
+        <div className="mt-8 flex flex-col items-center justify-between gap-4 border-white/5 pt-8 text-sm text-neutral-300 sm:flex-row">
+          <p className="text-neutral-400 tracking-[0.1em]">
+            Built for developers, by <Link href="https://x.com/0xdevug" target="_blank" rel="noopener noreferrer" className=" border-b-1 border-neutral-400 hover:border-white hover:text-white">Utsav</Link>.
           </p>
           <p>
             © {new Date().getFullYear()} SnipHUB. All rights reserved.

@@ -100,7 +100,7 @@ export default function HowItWorks() {
             </span>
           </h2>
 
-          <p className="mx-auto mt-3 max-w-2xl text-lg text-slate-400">
+          <p className="mx-auto mt-3 max-w-2xl text-lg text-neutral-400">
             SnipHub lets you create, organize, and share code snippets —
             privately for yourself or publicly to help the community.
           </p>
@@ -118,7 +118,7 @@ export default function HowItWorks() {
               Create snippets
             </h3>
 
-            <p className="text-base leading-relaxed text-slate-400">
+            <p className="text-base leading-relaxed text-neutral-400">
               Save functions, configs, fixes, or patterns you use
               often — with language support and clean previews.
             </p>
@@ -134,7 +134,7 @@ export default function HowItWorks() {
               Control visibility
             </h3>
 
-            <p className="text-base leading-relaxed text-slate-400">
+            <p className="text-base leading-relaxed text-neutral-400">
               Keep snippets private for personal use or make them
               public to help other developers learn and reuse.
             </p>
@@ -150,7 +150,7 @@ export default function HowItWorks() {
               Organize & reuse
             </h3>
 
-            <p className="text-base leading-relaxed text-slate-400">
+            <p className="text-base leading-relaxed text-neutral-400">
               Tag, search, and organize snippets so the right code
               is always easy to find and reuse when needed.
             </p>
@@ -166,7 +166,7 @@ export default function HowItWorks() {
               Explore & engage
             </h3>
 
-            <p className="text-base leading-relaxed text-slate-400">
+            <p className="text-base leading-relaxed text-neutral-400">
               Discover snippets shared by others, like useful ones,
               and build a collection you trust and grow over time.
             </p>

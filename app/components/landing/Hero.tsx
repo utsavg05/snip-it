@@ -99,14 +99,14 @@ export default function Hero() {
           <br />
           Save them in{" "}
           <span className="relative inline-block px-1">
-            <span className="relative z-0 text-slate-200">minutes</span>
+            <span className="relative z-0 text-white">minutes</span>
             <span aria-hidden="true" className="absolute inset-x-0 top-1/2 translate-y-1/2 h-1 md:h-1.5 bg-red-500"> </span>
           </span>{" "}
           <span className="text-emerald-400">seconds</span>.
         </h1>
 
         {/* subheading */}
-        <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-slate-400 sm:text-lg">
+        <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-neutral-400 sm:text-lg">
           Save, tag, and reuse your best code snippets.
           <br />
           Built for developers who hate digging through old repos and notes.
@@ -134,7 +134,7 @@ export default function Hero() {
         </div>
 
         {/* reassurance */}
-        <p className="mt-4 text-sm text-slate-400">
+        <p className="mt-4 text-sm text-neutral-400">
           Free to get started • No credit card required
         </p>
       </div>

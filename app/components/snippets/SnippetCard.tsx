@@ -195,6 +195,8 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import { toast } from "react-toastify";
+import CopyIcon from "@/components/ui/copy-icon";
+import WorldIcon from "@/components/ui/world-icon";
 
 type SnippetCardProps = {
   id: string;
@@ -305,6 +307,7 @@ export default function SnippetCard({
 
           {isPublic ? (
             <Globe size={14} className="text-slate-400" />
+            // <WorldIcon size={18} className="text-slate-400"/>
           ) : (
             <Lock size={14} className="text-slate-500" />
           )}
@@ -388,7 +391,8 @@ export default function SnippetCard({
             }}
             className="flex h-7 w-7 items-center justify-center rounded-md text-slate-400 hover:bg-white/5 hover:text-white"
           >
-            <Copy size={15} />
+            {/* <Copy size={15} /> */}
+            <CopyIcon size={15}/>
           </button>
 
           {isOwner && (
