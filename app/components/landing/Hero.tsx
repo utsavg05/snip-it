@@ -33,7 +33,7 @@ const avatars = [
 
 export default function Hero() {
   return (
-    <section className="pt-15 relative overflow-hidden bg-gradient-to-b from-[#0b0f0e] via-[#0d1412] to-[#0b0f0e]">
+    <section className="pt-15 w-full relative  bg-gradient-to-b from-[#0b0f0e] via-[#0d1412] to-[#0b0f0e]">
 
       {/* subtle background glow */}
       <div
@@ -56,24 +56,6 @@ export default function Hero() {
           </div>
         {/* trust badge */}
         <div className="mb-6 flex justify-center">
-          {/* <Badge
-            variant="secondary"
-            className="rounded-full border border-white/10 bg-white/5 px-5 py-2 text-md text-slate-200 backdrop-blur"
-          >
-            <span className="mr-2">👥</span>
-            1k+ developers save snippets daily
-          </Badge> */}
-
-          {/* <div className="flex items-center gap-3 px-1 py-1 pr-2 bg-[#25262C] border border-neutral-800 rounded-full w-fit">
-            <div className="flex -space-x-2">
-              <img alt="User" loading="lazy" width="24" height="24" decoding="async" data-nimg="1" className="w-6 h-6 rounded-full border-2 border-[#25262C] object-cover" src="https://i.pravatar.cc/100?img=10" />
-              <img alt="User" loading="lazy" width="24" height="24" decoding="async" data-nimg="1" className="w-6 h-6 rounded-full border-2 border-[#25262C] object-cover" src="https://i.pravatar.cc/100?img=12" />
-              <img alt="User" loading="lazy" width="24" height="24" decoding="async" data-nimg="1" className="w-6 h-6 rounded-full border-2 border-[#25262C] object-cover" src="https://i.pravatar.cc/100?img=13" />
-              <img alt="User" loading="lazy" width="24" height="24" decoding="async" data-nimg="1" className="w-6 h-6 rounded-full border-2 border-[#25262C] object-cover" src="https://i.pravatar.cc/100?img=1" />
-            </div>
-            <div className="text-neutral-300 text-xs sm:text-sm font-medium whitespace-nowrap"><span className="text-white font-bold">1k+</span> developers saving & sharing snippets</div>
-          </div> */}
-
           <div className="flex items-center gap-3 px-1.5 py-1 pr-3 w-fit rounded-full
                           border border-white/15
                           bg-white/5 backdrop-blur-md
@@ -118,12 +100,8 @@ export default function Hero() {
           Save them in{" "}
           <span className="relative inline-block px-1">
             <span className="relative z-0 text-slate-200">minutes</span>
-            <span aria-hidden="true" className="absolute inset-x-0 top-1/2 translate-y-1/2 h-1 bg-red-500"> </span>
+            <span aria-hidden="true" className="absolute inset-x-0 top-1/2 translate-y-1/2 h-1.5 bg-red-500"> </span>
           </span>{" "}
-          {/* <span className="relative inline-block">
-            <span className="absolute left-0 top-1/2 h-[3px] w-full -translate-y-1/2 bg-red-500/70" />
-            <span className="relative text-slate-400">minutes</span>
-          </span>{" "} */}
           <span className="text-emerald-400">seconds</span>.
         </h1>
 
@@ -139,7 +117,7 @@ export default function Hero() {
           <Link href="/explore">
             <Button
               size="lg"
-              className="cursor-pointer rounded-xl bg-emerald-500 px-8 py-6 text-base font-semibold text-black hover:bg-emerald-400"
+              className="cursor-pointer rounded-xl bg-emerald-500 px-8 py-6 text-base font-semibold text-[#0b0f0e] hover:bg-emerald-400"
             >
               Start saving snippets
             </Button>

@@ -26,26 +26,26 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="overflow-x-hidden">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} min-h-screen bg-gradient-to-b from-[#020202] via-[#090b0a] to-[#010101] text-white antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} w-full max-w-[100vw] min-h-screen bg-gradient-to-b from-[#020202] via-[#090b0a] to-[#010101] text-white antialiased overflow-x-hidden`}
       >
         <Navbar />
         {children}
         <Analytics />
         <ToastContainer
-        position="bottom-right"
-        autoClose={2500}
-        hideProgressBar
-        closeOnClick
-        pauseOnHover
-        theme="dark"
-        toastStyle={{
-          background: "#0d1117",
-          border: "1px solid rgba(255,255,255,0.1)",
-          color: "#e5e7eb",
-        }}
-      />
+          position="bottom-right"
+          autoClose={2500}
+          hideProgressBar
+          closeOnClick
+          pauseOnHover
+          theme="dark"
+          toastStyle={{
+            background: "#0d1117",
+            border: "1px solid rgba(255,255,255,0.1)",
+            color: "#e5e7eb",
+          }}
+        />
       </body>
     </html>
   );

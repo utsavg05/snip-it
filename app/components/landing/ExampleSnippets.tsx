@@ -197,7 +197,7 @@ export default async function ExampleSnippets() {
   return (
     <section
       id="examples"
-      className="relative border-white/5 bg-[#0b0f0e]"
+      className="w-full relative border-white/5 bg-[#0b0f0e]"
     >
       <div className="mx-auto max-w-7xl px-6 py-20">
         {/* Heading */}
@@ -287,7 +287,7 @@ export default async function ExampleSnippets() {
           <Link href="/explore">
           <Button
             size="lg"
-            className="rounded-xl cursor-pointer bg-emerald-500 px-8 py-6 text-base font-semibold text-black hover:bg-emerald-400"
+            className="rounded-xl cursor-pointer bg-emerald-500 px-8 py-6 text-base font-semibold text-white hover:bg-emerald-400"
           >
             Explore all snippets
           </Button>
