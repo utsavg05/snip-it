@@ -87,7 +87,7 @@ export default async function ExploreResults({ page }: Props) {
                     className="fixed rounded-xl text-sm sm:text-md bottom-6 sm:bottom-10 right-4 sm:right-6 px-3 sm:px-4 py-4 sm:py-5 cursor-pointer z-50 shadow-2xl"
                 >
                     <span className="hidden sm:inline">Create</span>
-                    <span className="sm:hidden">+</span>
+                    <span className="sm:hidden text-lg font-semibold">+</span>
                 </RainbowButton>
             </Link>
 
