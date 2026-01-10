@@ -105,11 +105,11 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-8 flex flex-col items-center justify-between gap-4 border-white/5 pt-8 text-sm text-slate-300 sm:flex-row">
+          <p className="text-slate-400 tracking-[0.1em]">
+            Built for developers, by <Link href="https://x.com/0xdevug" target="_blank" rel="noopener noreferrer" className=" border-b-1 border-slate-400 hover:border-white hover:text-white">Utsav</Link>.
+          </p>
           <p>
             © {new Date().getFullYear()} SnipHUB. All rights reserved.
-          </p>
-          <p className="text-slate-300">
-            Built for developers.
           </p>
         </div>
       </div>
