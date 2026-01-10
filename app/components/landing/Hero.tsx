@@ -41,10 +41,10 @@ export default function Hero() {
         className="pointer-events-none absolute left-1/2 top-[-120px] h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-emerald-500/10 blur-[120px]"
       />
 
-      <div className="mx-auto max-w-6xl px-6 pb-32 md:pt-28 pt-13 text-center">
+      <div className="mx-auto max-w-6xl px-6 pb-32 md:pt-28 pt-5 text-center">
         <div className="flex items-center gap-2 justify-center mb-8 block md:hidden">
 
-        <div className="flex items-center gap-3 px-2 py-1 w-fit rounded-full
+        {/* <div className="flex items-center gap-3 px-2 py-1 w-fit rounded-full
                           border border-white/15
                           bg-white backdrop-blur-md
                           shadow-[0_8px_30px_rgba(0,0,0,0.35)]
@@ -52,11 +52,11 @@ export default function Hero() {
                           >
             <span className="h-2 w-2 ml-1 rounded-full bg-emerald-400 animate-caret-blink duration-300" />
             Best experienced on larger screens
-        </div>
+        </div> */}
           </div>
         {/* trust badge */}
         <div className="mb-6 flex justify-center">
-          <div className="flex items-center gap-3 px-1.5 py-1 pr-3 w-fit rounded-full
+          <div className="flex items-center gap-3 md:px-1.5 px-1 py-1 pr-3 w-fit rounded-full
                           border border-white/15
                           bg-white/5 backdrop-blur-md
                           shadow-[0_8px_30px_rgba(0,0,0,0.35)]
@@ -65,22 +65,22 @@ export default function Hero() {
             <div className="flex -space-x-2">
               <img
                 src="https://i.pravatar.cc/100?img=10"
-                className="h-6 w-6 rounded-full border-2 border-[#0d1117] object-cover"
+                className="md:h-6 md:w-6 h-5 w-5 rounded-full border-2 border-[#0d1117] object-cover"
                 alt="User"
               />
               <img
                 src="https://i.pravatar.cc/100?img=12"
-                className="h-6 w-6 rounded-full border-2 border-[#0d1117] object-cover"
+                className="md:h-6 md:w-6 h-5 w-5 rounded-full border-2 border-[#0d1117] object-cover"
                 alt="User"
               />
               <img
                 src="https://i.pravatar.cc/100?img=13"
-                className="h-6 w-6 rounded-full border-2 border-[#0d1117] object-cover"
+                className="md:h-6 md:w-6 h-5 w-5 rounded-full border-2 border-[#0d1117] object-cover"
                 alt="User"
               />
               <img
                 src="https://i.pravatar.cc/100?img=1"
-                className="h-6 w-6 rounded-full border-2 border-[#0d1117] object-cover"
+                className="md:h-6 md:w-6 h-5 w-5 rounded-full border-2 border-[#0d1117] object-cover"
                 alt="User"
               />
             </div>
@@ -94,13 +94,13 @@ export default function Hero() {
         </div>
 
         {/* headline */}
-        <h1 className="mx-auto max-w-5xl text-balance text-5xl font-bold leading-tight tracking-tight text-white sm:text-7xl">
+        <h1 className="mx-auto max-w-5xl text-balance text-3xl font-bold leading-tight tracking-tight text-white sm:text-7xl">
           Stop losing code snippets.
           <br />
           Save them in{" "}
           <span className="relative inline-block px-1">
             <span className="relative z-0 text-slate-200">minutes</span>
-            <span aria-hidden="true" className="absolute inset-x-0 top-1/2 translate-y-1/2 h-1.5 bg-red-500"> </span>
+            <span aria-hidden="true" className="absolute inset-x-0 top-1/2 translate-y-1/2 h-1 md:h-1.5 bg-red-500"> </span>
           </span>{" "}
           <span className="text-emerald-400">seconds</span>.
         </h1>
