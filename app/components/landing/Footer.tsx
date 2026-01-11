@@ -121,7 +121,11 @@
 
 
 import Link from "next/link";
-import { Github, Twitter, Mail } from "lucide-react";
+import { Github, Twitter, Mail, Linkedin } from "lucide-react";
+import LinkedinIcon from "@/components/ui/linkedin-icon";
+import GithubIcon from "@/components/ui/github-icon";
+import TwitterXIcon from "@/components/ui/twitter-x-icon";
+import MailFilledIcon from "@/components/ui/mail-filled-icon";
 
 export default function Footer() {
   return (
@@ -147,7 +151,8 @@ export default function Footer() {
                 className="hover:text-white transition-colors p-2 hover:bg-white/5 rounded-lg"
                 aria-label="Twitter"
               >
-                <Twitter size={20} />
+                {/* <Twitter size={20} /> */}
+                <TwitterXIcon size={25} />
               </Link>
               <Link 
                 href="https://github.com/utsavg05" 
@@ -156,7 +161,8 @@ export default function Footer() {
                 className="hover:text-white transition-colors p-2 hover:bg-white/5 rounded-lg"
                 aria-label="GitHub"
               >
-                <Github size={20} />
+                {/* <Github size={20} /> */}
+                <GithubIcon size={25} />
               </Link>
               <Link 
                 href="mailto:utsav.gp1204@gmail.com" 
@@ -165,7 +171,16 @@ export default function Footer() {
                 className="hover:text-white transition-colors p-2 hover:bg-white/5 rounded-lg"
                 aria-label="Email"
               >
-                <Mail size={20} />
+                <MailFilledIcon size={25} />
+              </Link>
+              <Link 
+                href="https://www.linkedin.com/in/utsav-gupta-3443a0324/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="hover:text-white transition-colors p-2 hover:bg-white/5 rounded-lg"
+                aria-label="LinkedIn"
+              >
+                <LinkedinIcon size={25} />
               </Link>
             </div>
           </div>
@@ -233,6 +248,16 @@ export default function Footer() {
                   className="hover:text-white transition-colors inline-block"
                 >
                   GitHub
+                </Link>
+              </li>
+              <li>
+                <Link 
+                  href="https://www.linkedin.com/in/utsav-gupta-3443a0324/" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="hover:text-white transition-colors inline-block"
+                >
+                  LinkedIn
                 </Link>
               </li>
             </ul>
