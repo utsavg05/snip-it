@@ -18,7 +18,7 @@ export default function Home() {
         <Testimonials />
         <Footer />
         <Link href="/snippets/new">
-          <RainbowButton variant={"outline"} className="fixed rounded-xl text-md bottom-8 right-5 px-3 py-5 cursor-pointer ">Create</RainbowButton>
+          <RainbowButton variant={"outline"} className="fixed rounded-xl text-sm md:text-md bottom-7 right-4 md:bottom-8 md:right-5 px-3 py-5 cursor-pointer ">Create</RainbowButton>
         </Link>
       </div>
     </>
