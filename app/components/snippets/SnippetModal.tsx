@@ -311,16 +311,32 @@ export default function SnippetModal({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-[95vw] sm:max-w-2xl md:max-w-3xl max-h-[90vh] overflow-y-auto border border-white/10 bg-[#0b0f0e] text-white p-4 sm:p-6 [&>button[aria-label='Close']]:hidden
-">
-        <DialogClose asChild >
+      {/* <DialogContent className="max-w-[95vw] sm:max-w-2xl md:max-w-3xl max-h-[90vh] overflow-y-auto border border-white/10 bg-[#0b0f0e] text-white p-4 sm:p-6 [&>button[aria-label='Close']]:hidden
+"> */}
+      <DialogContent
+        className="
+                  max-w-[95vw] sm:max-w-2xl md:max-w-3xl
+                  max-h-[90vh] overflow-y-auto
+                  border border-white/10 bg-[#0b0f0e] text-white
+                  p-4 sm:p-6
+
+                  /* style the built-in close button safely */
+                  [&_[data-radix-dialog-close]]:text-slate-400
+                  [&_[data-radix-dialog-close]]:hover:text-white
+                  [&_[data-radix-dialog-close]]:hover:bg-white/10
+                  [&_[data-radix-dialog-close]]:rounded-md
+                  [&_[data-radix-dialog-close]]:p-1
+                "
+      >
+
+        {/* <DialogClose asChild >
           <button
             className="absolute right-4 top-4 rounded-md p-1 text-slate-400 hover:text-white hover:bg-white/10 transition"
             aria-label="Close"
           >
             <X size={18} />
           </button>
-        </DialogClose>
+        </DialogClose> */}
 
         <DialogHeader className="space-y-3 sm:space-y-4">
           {/* Title with close button */}

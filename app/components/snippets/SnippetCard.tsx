@@ -575,7 +575,11 @@ export default function SnippetCard({
 
   return (
     <div
-      onClick={() => setOpen(true)}
+      // onMouseUp={() => setOpen(true)}
+      onClick={() => {
+        if (!open) setOpen(true);
+      }}
+
       className="group relative cursor-pointer rounded-xl sm:rounded-2xl border border-white/10 bg-[#0b0f0e] p-4 sm:p-5 transition-all duration-200 hover:border-emerald-500/30 hover:bg-white/[0.02] hover:-translate-y-0.5 hover:shadow-lg hover:shadow-emerald-500/5"
     >
       {/* Top row */}
@@ -600,11 +604,10 @@ export default function SnippetCard({
             handleLikeToggle();
           }}
           disabled={isPending}
-          className={`flex items-center gap-1 text-xs sm:text-sm transition-colors ${
-            liked
+          className={`flex items-center gap-1 text-xs sm:text-sm transition-colors ${liked
               ? "text-red-500"
               : "text-slate-400 hover:text-red-400"
-          }`}
+            }`}
         >
           <Heart size={15} className="sm:w-4 sm:h-4" fill={liked ? "currentColor" : "none"} />
           {count > 0 && <span className="font-medium">{count}</span>}
@@ -699,7 +702,7 @@ export default function SnippetCard({
                   </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter className="flex-col sm:flex-row gap-2">
-                  <AlertDialogCancel className="border-white/10 bg-transparent cursor-pointer hover:bg-white/5 m-0">
+                  <AlertDialogCancel className="border-white/10 bg-transparent cursor-pointer hover:bg-white/5 hover:text-white m-0">
                     Cancel
                   </AlertDialogCancel>
                   <AlertDialogAction
