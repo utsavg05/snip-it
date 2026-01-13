@@ -287,7 +287,7 @@ export default function ExampleSnippets() {
           <Link href="/explore">
             <Button
               size="lg"
-              className="rounded-xl cursor-pointer bg-emerald-500 px-6 sm:px-8 py-5 sm:py-6 text-sm sm:text-base font-semibold text-[#0b0f0e] hover:bg-emerald-400 active:scale-95 transition-transform w-full sm:w-auto"
+              className="rounded-xl cursor-pointer bg-gradient-to-r from-emerald-500 to-emerald-600 px-6 sm:px-8 py-5 sm:py-6 text-sm sm:text-base font-semibold text-[#0b0f0e] text-white hover:bg-emerald-400 active:scale-95 transition-transform w-full sm:w-auto"
             >
               Explore all snippets
             </Button>

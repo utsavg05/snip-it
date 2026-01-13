@@ -211,9 +211,9 @@ export default async function Navbar() {
             ) : (
               <CoolMode>
                 <Link href="/auth">
-                  <button className="cursor-pointer flex items-center gap-1 rounded-xl bg-emerald-500 px-5 py-2 text-sm font-semibold text-[#0b0f0e] hover:bg-emerald-400">
+                  <button className="cursor-pointer flex items-center gap-1 rounded-lg bg-gradient-to-r from-emerald-500 to-emerald-600 px-5 py-2 text-sm font-semibold text-[#0b0f0e] text-white hover:bg-emerald-400">
                     Login
-                    <Lock size={18} />
+                    {/* <Lock size={18} /> */}
                   </button>
                 </Link>
               </CoolMode>

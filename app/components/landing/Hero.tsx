@@ -117,7 +117,7 @@ export default function Hero() {
           <Link href="/explore">
             <Button
               size="lg"
-              className="cursor-pointer rounded-xl bg-emerald-500 px-8 py-6 text-base font-semibold text-[#0b0f0e] hover:bg-emerald-400"
+              className="cursor-pointer rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-600 px-8 py-6 text-base font-semibold text-[#0b0f0e] text-white hover:text-white shadow-lg shadow-emerald-500/30"
             >
               Start saving snippets
             </Button>
