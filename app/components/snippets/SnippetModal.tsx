@@ -311,14 +311,15 @@ export default function SnippetModal({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-w-[95vw] sm:max-w-2xl md:max-w-3xl max-h-[90vh] overflow-y-auto border border-white/10 bg-[#0b0f0e] text-white p-4 sm:p-6">
+      <DialogContent className="max-w-[95vw] sm:max-w-2xl md:max-w-3xl max-h-[90vh] overflow-y-auto border border-white/10 bg-[#0b0f0e] text-white p-4 sm:p-6 [&>button[aria-label='Close']]:hidden
+">
         <DialogClose asChild >
-          {/* <button
+          <button
             className="absolute right-4 top-4 rounded-md p-1 text-slate-400 hover:text-white hover:bg-white/10 transition"
             aria-label="Close"
           >
             <X size={18} />
-          </button> */}
+          </button>
         </DialogClose>
 
         <DialogHeader className="space-y-3 sm:space-y-4">
