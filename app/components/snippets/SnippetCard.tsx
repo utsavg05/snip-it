@@ -461,7 +461,7 @@
 "use client";
 
 import Image from "next/image";
-import { Copy, Heart, Lock, Globe, Delete, DeleteIcon, Trash2 } from "lucide-react";
+import { Copy, Heart, Lock, Globe, Delete, DeleteIcon, Trash2, CheckIcon } from "lucide-react";
 import { useEffect, useState, useTransition } from "react";
 import { likeSnippet, unlikeSnippet } from "@/drizzle/src/snippets/likes";
 import SnippetModal from "./SnippetModal";
@@ -676,7 +676,11 @@ export default function SnippetCard({
             className="flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-lg text-slate-400 hover:bg-emerald-500/10 hover:text-emerald-400 transition-colors"
             title="Copy code"
           >
-            <CopyIcon size={14} className="sm:w-[15px] sm:h-[15px]" />
+            {copied ? (
+              <CheckIcon size={14} className="sm:w-[15px] sm:h-[15px]" />
+            ) : (
+              <CopyIcon size={14} className="sm:w-[15px] sm:h-[15px]" />
+            )}
           </button>
 
           {isOwner && (
@@ -702,7 +706,9 @@ export default function SnippetCard({
                   </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter className="flex-col sm:flex-row gap-2">
-                  <AlertDialogCancel className="border-white/10 bg-transparent cursor-pointer hover:bg-white/5 hover:text-white m-0">
+                  <AlertDialogCancel 
+                  onClick={(e) => {e.stopPropagation();}}
+                  className="border-white/10 bg-transparent cursor-pointer hover:bg-white/5 hover:text-white m-0">
                     Cancel
                   </AlertDialogCancel>
                   <AlertDialogAction
