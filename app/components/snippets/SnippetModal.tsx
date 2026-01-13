@@ -204,7 +204,7 @@
 
 // Claude UI
 "use client";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogClose, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Copy, Heart, Globe, Lock, X } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -312,6 +312,15 @@ export default function SnippetModal({
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-[95vw] sm:max-w-2xl md:max-w-3xl max-h-[90vh] overflow-y-auto border border-white/10 bg-[#0b0f0e] text-white p-4 sm:p-6">
+        <DialogClose asChild >
+          {/* <button
+            className="absolute right-4 top-4 rounded-md p-1 text-slate-400 hover:text-white hover:bg-white/10 transition"
+            aria-label="Close"
+          >
+            <X size={18} />
+          </button> */}
+        </DialogClose>
+
         <DialogHeader className="space-y-3 sm:space-y-4">
           {/* Title with close button */}
           <div className="flex items-start justify-between gap-4">
@@ -384,9 +393,8 @@ export default function SnippetModal({
           <div className="flex items-center gap-3 sm:gap-4">
             <button
               onClick={onLikeToggle}
-              className={`flex items-center gap-1.5 text-sm transition-colors ${
-                liked ? "text-red-500" : "text-slate-400 hover:text-red-400"
-              }`}
+              className={`flex items-center gap-1.5 text-sm transition-colors ${liked ? "text-red-500" : "text-slate-400 hover:text-red-400"
+                }`}
             >
               <Heart
                 size={16}
