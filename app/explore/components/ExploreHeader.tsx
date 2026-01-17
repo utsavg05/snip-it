@@ -231,7 +231,7 @@ export default function ExploreHeader() {
         </form>
       </div>
 
-      {/* Mobile Language Filter - Only visible on mobile/tablet */}
+      {/* Mobile Language filter for languages */}
       <div className="lg:hidden relative">
         <button
           onClick={() => setIsLangOpen(!isLangOpen)}
