@@ -306,6 +306,8 @@ import { Search, ChevronDown } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useDebouncedValue } from "@/hooks/useDebouncedValue";
+import { useRef } from "react";
+
 
 const LANGUAGES = [
   "JavaScript",
@@ -342,23 +344,50 @@ export default function ExploreHeader() {
   const debouncedSearch = useDebouncedValue(searchValue, 300);
 
   /* ---------------- SEARCH (LIVE) ---------------- */
-  useEffect(() => {
-    const params = new URLSearchParams(searchParams.toString());
+  // useEffect(() => {
+  //   const params = new URLSearchParams(searchParams.toString());
 
-    if (debouncedSearch.trim().length >= 2) {
-      params.set("q", debouncedSearch.trim());
+  //   if (debouncedSearch.trim().length >= 2) {
+  //     params.set("q", debouncedSearch.trim());
 
-      // 🔥 clear language when searching
-      params.delete("lang");
-    } else {
-      params.delete("q");
-    }
+  //     // 🔥 clear language when searching
+  //     params.delete("lang");
+  //   } else {
+  //     params.delete("q");
+  //   }
 
-    params.delete("page");
+  //   params.delete("page");
 
-    router.replace(`/explore?${params.toString()}`);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [debouncedSearch]);
+  //   router.replace(`/explore?${params.toString()}`);
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [debouncedSearch]);
+
+  const prevSearchRef = useRef<string>("");
+
+useEffect(() => {
+  const trimmed = debouncedSearch.trim();
+
+  // 🚫 Do nothing if search didn't change
+  if (prevSearchRef.current === trimmed) return;
+
+  prevSearchRef.current = trimmed;
+
+  const params = new URLSearchParams(searchParams.toString());
+
+  if (trimmed.length >= 2) {
+    params.set("q", trimmed);
+    params.delete("lang"); // optional, based on your rules
+  } else {
+    params.delete("q");
+  }
+
+  // ✅ reset page ONLY when search changes
+  params.delete("page");
+
+  router.replace(`/explore?${params.toString()}`);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, [debouncedSearch]);
+
 
   /* ---------------- LANGUAGE (MOBILE) ---------------- */
   function handleLangSelect(lang: string) {
