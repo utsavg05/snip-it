@@ -312,9 +312,20 @@ const LANGUAGES = [
   "TypeScript",
   "Python",
   "Java",
-  "Cpp",
   "Go",
   "Rust",
+  "C",
+  "Cpp",
+  "CSharp",
+  "PHP",
+  "Ruby",
+  "Swift",
+  "Kotlin",
+  "SQL",
+  "Bash",
+  "Docker",
+  "HTML",
+  "CSS",
 ];
 
 export default function ExploreHeader() {
@@ -336,20 +347,26 @@ export default function ExploreHeader() {
 
     if (debouncedSearch.trim().length >= 2) {
       params.set("q", debouncedSearch.trim());
+
+      // 🔥 clear language when searching
+      params.delete("lang");
     } else {
       params.delete("q");
     }
 
-    // reset pagination on new search
     params.delete("page");
 
     router.replace(`/explore?${params.toString()}`);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [debouncedSearch]);
 
-  /* ---------------- LANGUAGE ---------------- */
+  /* ---------------- LANGUAGE (MOBILE) ---------------- */
   function handleLangSelect(lang: string) {
     const params = new URLSearchParams(searchParams.toString());
+
+    // 🔥 IMPORTANT: clear search state + URL
+    setSearchValue("");
+    params.delete("q");
 
     if (activeLang === lang || lang === "") {
       params.delete("lang");
@@ -394,7 +411,7 @@ export default function ExploreHeader() {
       <div className="lg:hidden relative">
         <button
           onClick={() => setIsLangOpen((v) => !v)}
-          className="w-full sm:w-auto flex items-center justify-between gap-3 rounded-xl border border-white/10 bg-[#0b0f0e] px-4 py-2.5 text-sm text-white hover:bg-white/[0.02] hover:border-emerald-500/30 transition-all"
+          className="w-full flex items-center justify-between gap-3 rounded-xl border border-white/10 bg-[#0b0f0e] px-4 py-2.5 text-sm text-white hover:bg-white/[0.02] hover:border-emerald-500/30 transition-all"
         >
           <span className="flex items-center gap-2">
             <span className="text-slate-400 font-medium">Language:</span>
@@ -416,7 +433,7 @@ export default function ExploreHeader() {
               className="fixed inset-0 z-10 bg-black/60 backdrop-blur-sm"
               onClick={() => setIsLangOpen(false)}
             />
-            <div className="absolute top-full left-0 right-0 sm:right-auto sm:w-64 mt-2 z-20 rounded-xl border border-white/10 bg-[#0b0f0e] p-2 shadow-2xl backdrop-blur-xl">
+            <div className="absolute top-full left-0 right-0 mt-2 z-20 max-h-72 overflow-y-auto rounded-xl border border-white/10 bg-[#0b0f0e] p-2 shadow-2xl backdrop-blur-xl">
               <div
                 onClick={() => handleLangSelect("")}
                 className={`cursor-pointer rounded-lg px-3 py-2.5 text-sm font-medium transition-all ${
@@ -427,7 +444,9 @@ export default function ExploreHeader() {
               >
                 All Languages
               </div>
+
               <div className="my-1 h-px bg-white/5" />
+
               {LANGUAGES.map((lang) => (
                 <div
                   key={lang}

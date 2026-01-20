@@ -205,12 +205,18 @@ import { getExploreSnippetsPaginated } from "@/drizzle/src/snippets/action";
 type ExplorePageProps = {
   searchParams?: {
     page?: string;
+
+    q?: string;
+    lang?: string;
   };
 };
 
 export default async function ExplorePage({ searchParams }: ExplorePageProps) {
   const params = await searchParams;
   const page = Math.max(1, Number(params?.page ?? 1));
+
+  const q = params?.q;
+  const lang = params?.lang;
 
   const { items, totalPages } = await getExploreSnippetsPaginated({
     page,
@@ -228,7 +234,7 @@ export default async function ExplorePage({ searchParams }: ExplorePageProps) {
         {/* Content */}
         <section className="flex-1 min-w-0 w-full">
           <ExploreHeader />
-          <ExploreResults page={page} />
+          <ExploreResults page={page} query={q} lang={lang}/>
         </section>
       </div>
     </main>
