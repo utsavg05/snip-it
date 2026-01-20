@@ -59,8 +59,6 @@
 
 
 
-
-import ExploreGrid from "./ExploreGrid";
 import SnippetCard from "@/app/components/snippets/SnippetCard";
 import { getExploreSnippetsPaginated } from "@/drizzle/src/snippets/action";
 import ExplorePagination from "../pagination";
@@ -70,12 +68,18 @@ import ExploreResultsClient from "./ExploreResultsClient";
 
 type Props = {
     page: number;
+
+    query?: string;
+    lang?: string;
 };
 
-export default async function ExploreResults({ page }: Props) {
+export default async function ExploreResults({ page,  query, lang }: Props) {
     const { items, totalPages } = await getExploreSnippetsPaginated({
         page,
         limit: 12,
+
+        query,
+        lang
     });
 
     return (
