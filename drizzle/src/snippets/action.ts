@@ -300,7 +300,7 @@ import { db } from "@/drizzle/src/index";
 import { snippetLikes, snippets, users } from "@/drizzle/src/db/schema";
 import { createSupabaseServerClient } from "@/lib/supabase/server-client";
 import { nanoid } from "nanoid";
-import { and, desc, eq, ilike, sql } from "drizzle-orm";
+import { and, desc, eq, ilike, SQL, sql, or } from "drizzle-orm";
 import { getAuthUser } from "@/lib/auth";
 import { revalidatePath } from "next/cache";
 
@@ -522,20 +522,40 @@ export async function getExploreSnippets() {
     .orderBy(desc(snippets.createdAt));
 }
 
-/* ------------------------------------------------------------------ */
-/* EXPLORE PAGINATED (FIXED) */
-/* ------------------------------------------------------------------ */
-
+// working
 // export async function getExploreSnippetsPaginated({
+//   page = 1,
 //   limit = 12,
-//   cursor,
+//   // lang,
+//   // query
 // }: {
+//   page?: number;
 //   limit?: number;
-//   cursor?: { createdAt: Date; id: string };
+//   // lang?: string;
+//   // query?: string;
 // }) {
-//   const user = await getAuthUser(); // may be null
+//   const user = await getAuthUser();
 
-//   const rows = await db
+//   const offset = (page - 1) * limit;
+
+// // const whereConditions = [
+// //   eq(snippets.isPublic, true),
+// // ];
+
+// // if (lang) {
+// //   whereConditions.push(
+// //     ilike(sql`${snippets.content}->>'language'`, lang)
+// //   );
+// // }
+
+// // if (query) {
+// //   whereConditions.push(
+// //     ilike(snippets.title, `%${query}%`)
+// //   );
+// // }
+
+//   // 1️⃣ Fetch paginated snippets
+//   const items = await db
 //     .select({
 //       id: snippets.id,
 //       title: snippets.title,
@@ -548,91 +568,94 @@ export async function getExploreSnippets() {
 //         avatar: users.avatar,
 //       },
 
-//       likesCount: sql<number>`COUNT(DISTINCT ${snippetLikes.id})`,
+//       likesCount: sql<number>`
+//         COUNT(DISTINCT ${snippetLikes.id})
+//       `,
 
 //       isLiked: user
-//         ? sql<boolean>`BOOL_OR(${snippetLikes.userId} = ${user.id})`
+//         ? sql<boolean>`
+//             BOOL_OR(${snippetLikes.userId} = ${user.id})
+//           `
 //         : sql<boolean>`false`,
 //     })
 //     .from(snippets)
-//     .leftJoin(users, eq(snippets.authorId, users.id))
-//     .leftJoin(snippetLikes, eq(snippetLikes.snippetId, snippets.id))
-//     .where(
-//       and(
-//         cursor
-//           ? sql`
-//               (
-//                 ${snippets.createdAt} < ${cursor.createdAt}
-//                 OR (
-//                   ${snippets.createdAt} = ${cursor.createdAt}
-//                   AND ${snippets.id} < ${cursor.id}
-//                 )
-//               )
-//             `
-//           : sql`true`,
-//         eq(snippets.isPublic, true)
-//       )
+//     .leftJoin(users, eq(users.id, snippets.authorId))
+//     .leftJoin(
+//       snippetLikes,
+//       eq(snippetLikes.snippetId, snippets.id)
 //     )
+//     .where(eq(snippets.isPublic, true))
 //     .groupBy(
 //       snippets.id,
-//       snippets.title,
-//       snippets.content,
-//       snippets.isPublic,
-//       snippets.createdAt,
 //       users.id,
 //       users.username,
 //       users.avatar
 //     )
-//     .orderBy(desc(snippets.createdAt), desc(snippets.id))
-//     .limit(limit + 1); // fetch one extra to detect next page
+//     .orderBy(desc(snippets.createdAt))
+//     .limit(limit)
+//     .offset(offset);
 
-//   const hasMore = rows.length > limit;
-//   const items = hasMore ? rows.slice(0, limit) : rows;
+//   // 2️⃣ Total count (for page numbers)
+//   const [{ count }] = await db
+//     .select({
+//       count: sql<number>`COUNT(*)`,
+//     })
+//     .from(snippets)
+//     .where(eq(snippets.isPublic, true));
 
-//   const nextCursor = hasMore
-//     ? {
-//         createdAt: items[items.length - 1].createdAt!,
-//         id: items[items.length - 1].id,
-//       }
-//     : null;
+//   const totalPages = Math.ceil(count / limit);
 
-//   return { items, nextCursor };
+//   return {
+//     items,
+//     totalPages,
+//   };
 // }
+
 
 
 
 export async function getExploreSnippetsPaginated({
   page = 1,
   limit = 12,
-  // lang,
-  // query
+  lang,
+  query,
 }: {
   page?: number;
   limit?: number;
-  // lang?: string;
-  // query?: string;
+  lang?: string;
+  query?: string;
 }) {
   const user = await getAuthUser();
-
   const offset = (page - 1) * limit;
 
-// const whereConditions = [
-//   eq(snippets.isPublic, true),
-// ];
+  const whereConditions: any[] = [
+    eq(snippets.isPublic, true),
+  ];
 
-// if (lang) {
-//   whereConditions.push(
-//     ilike(sql`${snippets.content}->>'language'`, lang)
-//   );
-// }
+  /* ---------- SEARCH (title + code) ---------- */
+  if (query && query.trim().length >= 2) {
+    const q = `%${query.trim()}%`;
 
-// if (query) {
-//   whereConditions.push(
-//     ilike(snippets.title, `%${query}%`)
-//   );
-// }
+    whereConditions.push(
+      sql<boolean>`
+        (
+          ${snippets.title} ILIKE ${q}
+          OR ${snippets.content} ->> 'code' ILIKE ${q}
+        )
+      `
+    );
+  }
 
-  // 1️⃣ Fetch paginated snippets
+  /* ---------- LANGUAGE FILTER ---------- */
+  if (lang) {
+    whereConditions.push(
+      sql<boolean>`
+        ${snippets.content} ->> 'language' ILIKE ${lang}
+      `
+    );
+  }
+
+  /* ---------- DATA ---------- */
   const items = await db
     .select({
       id: snippets.id,
@@ -646,23 +669,16 @@ export async function getExploreSnippetsPaginated({
         avatar: users.avatar,
       },
 
-      likesCount: sql<number>`
-        COUNT(DISTINCT ${snippetLikes.id})
-      `,
+      likesCount: sql<number>`COUNT(DISTINCT ${snippetLikes.id})`,
 
       isLiked: user
-        ? sql<boolean>`
-            BOOL_OR(${snippetLikes.userId} = ${user.id})
-          `
+        ? sql<boolean>`BOOL_OR(${snippetLikes.userId} = ${user.id})`
         : sql<boolean>`false`,
     })
     .from(snippets)
     .leftJoin(users, eq(users.id, snippets.authorId))
-    .leftJoin(
-      snippetLikes,
-      eq(snippetLikes.snippetId, snippets.id)
-    )
-    .where(eq(snippets.isPublic, true))
+    .leftJoin(snippetLikes, eq(snippetLikes.snippetId, snippets.id))
+    .where(and(...whereConditions))
     .groupBy(
       snippets.id,
       users.id,
@@ -673,19 +689,15 @@ export async function getExploreSnippetsPaginated({
     .limit(limit)
     .offset(offset);
 
-  // 2️⃣ Total count (for page numbers)
+  /* ---------- COUNT ---------- */
   const [{ count }] = await db
-    .select({
-      count: sql<number>`COUNT(*)`,
-    })
+    .select({ count: sql<number>`COUNT(*)` })
     .from(snippets)
-    .where(eq(snippets.isPublic, true));
-
-  const totalPages = Math.ceil(count / limit);
+    .where(and(...whereConditions));
 
   return {
     items,
-    totalPages,
+    totalPages: Math.ceil(count / limit),
   };
 }
 
