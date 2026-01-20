@@ -18,6 +18,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "SnipHUB - Share and Discover Code Snippets",
   description: "A platform to share, explore, and manage code snippets with ease.",
+   verification: {
+    google: "FMTylXgcgY0f-SmSmgXSEqfazdQMmvXQAqJgSA66H5c",
+  },
 };
 
 export default function RootLayout({
