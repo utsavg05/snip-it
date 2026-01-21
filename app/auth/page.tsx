@@ -538,7 +538,7 @@ export default function AuthPage({ user }: { user: User | null }) {
 
             <button
               disabled={loading}
-              className="w-full rounded-xl bg-emerald-500 py-3 text-sm font-semibold text-black hover:bg-emerald-400 disabled:opacity-60"
+              className="w-full rounded-xl bg-emerald-600 py-3 text-sm font-semibold text-white hover:bg-emerald-500/90 disabled:opacity-60"
             >
               {mode === "signup" ? "Create account" : "Sign in"}
             </button>
