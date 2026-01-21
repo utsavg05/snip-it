@@ -334,7 +334,7 @@ export default function MobileDrawer({
             <div className="border-t border-white/10 px-6 py-4">
               <CoolMode>
                 <Link href="/auth" onClick={onClose}>
-                  <button className="w-full rounded-xl bg-emerald-500 py-3 text-base font-semibold text-black transition-all hover:bg-emerald-400 active:scale-95">
+                  <button className="w-full rounded-xl bg-emerald-500 py-3 text-base font-semibold text-white transition-all hover:bg-emerald-400 active:scale-95">
                     Login
                   </button>
                 </Link>
