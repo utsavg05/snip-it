@@ -180,13 +180,13 @@ export default async function Navbar() {
           <Link href="/" className="font-semibold hover:text-emerald-400">
             Home
           </Link>
-          <Link href="#features" className="font-semibold hover:text-emerald-400">
+          <Link href="/#features" className="font-semibold hover:text-emerald-400">
             Features
           </Link>
           <Link href="/pricing" className="font-semibold hover:text-emerald-400">
             Pricing
           </Link>
-          <Link href="#demo" className="font-semibold hover:text-emerald-400">
+          <Link href="/#demo" className="font-semibold hover:text-emerald-400">
             Demo
           </Link>
 

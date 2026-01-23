@@ -288,7 +288,7 @@ export default function MobileDrawer({
             </Link>
             <Link 
               onClick={onClose} 
-              href="#features" 
+              href="/#features" 
               className="drawer-link w-full hover:text-[#22C55E] text-gray-300 cursor-pointer font-light transition-all duration-300 translate-x-0 opacity-100 delay-150"
             >
               Features
@@ -302,7 +302,7 @@ export default function MobileDrawer({
             </Link>
             <Link 
               onClick={onClose} 
-              href="#demo" 
+              href="/#demo" 
               className="drawer-link w-full hover:text-[#22C55E] text-gray-300 cursor-pointer font-light transition-all duration-300 translate-x-0 opacity-100 delay-150"
             >
               Demo
