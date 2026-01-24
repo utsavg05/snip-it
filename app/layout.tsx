@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "./components/landing/Navbar";
 import { ToastContainer } from "react-toastify";
 import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,6 +37,7 @@ export default function RootLayout({
         <Navbar />
         {children}
         <Analytics />
+        <SpeedInsights />
         <ToastContainer
           position="bottom-right"
           autoClose={2500}
