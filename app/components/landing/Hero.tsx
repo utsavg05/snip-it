@@ -122,7 +122,7 @@ export default function Hero() {
               Start saving snippets
             </Button>
           </Link>
-          <Link href="#examples">
+          <Link href="/#demo">
             <Button
               size="lg"
               variant="outline"
