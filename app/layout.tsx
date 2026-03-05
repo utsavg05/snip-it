@@ -18,8 +18,28 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SnipHUB - Share and Discover Code Snippets",
-  description: "A platform to share, explore, and manage code snippets with ease.",
+  title: "SnipHub - Share and Discover Code Snippets",
+  description:
+    "SnipHub lets you create, organize, and share code snippets — privately for yourself or publicly to help the community. Stop losing code and start saving your best snippets.",
+  openGraph: {
+    type: "website",
+    url: "https://sniphub-three.vercel.app/",
+    title: "SnipHub - Share and Discover Code Snippets",
+    description:
+      "Save, tag, and reuse your best code snippets. Built for developers who hate digging through old repos and notes.",
+    images: [
+      {
+        url: "https://sniphub-three.vercel.app/og-image.png",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "SnipHub - Share and Discover Code Snippets",
+    description:
+      "Save, tag, and reuse your best code snippets. Built for developers who hate digging through old repos and notes.",
+    images: ["https://sniphub-three.vercel.app/sniphub.png"],
+  },
   verification: {
     google: "FMTylXgcgY0f-SmSmgXSEqfazdQMmvXQAqJgSA66H5c",
   },
