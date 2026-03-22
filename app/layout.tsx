@@ -29,7 +29,7 @@ export const metadata: Metadata = {
       "Save, tag, and reuse your best code snippets. Built for developers who hate digging through old repos and notes.",
     images: [
       {
-        url: "https://sniphub-three.vercel.app/sniphub2.png",
+        url: "https://sniphub-three.vercel.app/sniphub.png",
       },
     ],
   },
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     title: "SnipHub - Share and Discover Code Snippets",
     description:
       "Save, tag, and reuse your best code snippets. Built for developers who hate digging through old repos and notes.",
-    images: ["https://sniphub-three.vercel.app/sniphub2.png"],
+    images: ["https://sniphub-three.vercel.app/sniphub.png"],
   },
   verification: {
     google: "FMTylXgcgY0f-SmSmgXSEqfazdQMmvXQAqJgSA66H5c",
