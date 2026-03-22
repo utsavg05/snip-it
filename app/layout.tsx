@@ -29,7 +29,7 @@ export const metadata: Metadata = {
       "Save, tag, and reuse your best code snippets. Built for developers who hate digging through old repos and notes.",
     images: [
       {
-        url: "https://sniphub-three.vercel.app/sniphub.png",
+        url: "https://sniphub-three.vercel.app/sniphub2.png",
       },
     ],
   },
