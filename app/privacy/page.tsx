@@ -173,7 +173,7 @@ export default function PrivacyPolicyPage() {
         </p>
 
         <p className="text-slate-300 font-medium">
-          utsav.gp1204@gmail.com
+          work.utsavg21@gmail.com
         </p>
       </section>
     </div>
