@@ -24,7 +24,7 @@
 //               <Link href="https://github.com/utsavg05" target="_blank" rel="noopener noreferrer" className="hover:text-white">
 //                 <Github size={18} />
 //               </Link>
-//               <Link href="mailto:utsav.gp1204@gmail.com" target="_blank" rel="noopener noreferrer" className="hover:text-white">
+//               <Link href="mailto:work.utsavg21@gmail.com" target="_blank" rel="noopener noreferrer" className="hover:text-white">
 //                 <Mail size={18} />
 //               </Link>
 //             </div>
@@ -66,7 +66,7 @@
 //             </h4>
 //             <ul className="space-y-3 text-sm text-neutral-400">
 //               <li>
-//                 <Link href="mailto:utsav.gp1204@gmail.com" target="_blank" rel="noopener noreferrer" className="hover:text-white">
+//                 <Link href="mailto:work.utsavg21@gmail.com" target="_blank" rel="noopener noreferrer" className="hover:text-white">
 //                   Contact
 //                 </Link>
 //               </li>
@@ -165,7 +165,7 @@ export default function Footer() {
                 <GithubIcon size={25} />
               </Link>
               <Link 
-                href="mailto:utsav.gp1204@gmail.com" 
+                href="mailto:work.utsavg21@gmail.com" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="hover:text-white transition-colors p-2 hover:bg-white/5 rounded-lg"
@@ -222,7 +222,7 @@ export default function Footer() {
             <ul className="space-y-2 sm:space-y-3 text-sm sm:text-base text-neutral-400">
               <li>
                 <Link 
-                  href="mailto:utsav.gp1204@gmail.com" 
+                  href="mailto:work.utsavg21@gmail.com" 
                   target="_blank" 
                   rel="noopener noreferrer" 
                   className="hover:text-white transition-colors inline-block"
